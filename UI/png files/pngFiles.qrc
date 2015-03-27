@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="loginPage">
+    <file>loginBtt.png</file>
+    <file>loginPage.png</file>
+    <file>signupBtt.png</file>
+  </qresource>
+</RCC>
