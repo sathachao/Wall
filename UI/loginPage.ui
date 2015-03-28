@@ -57,7 +57,7 @@
     <pixmap resource="png files/pngFiles.qrc">:/loginPage/loginBtt.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="signupBtt">
    <property name="geometry">
     <rect>
      <x>250</x>
