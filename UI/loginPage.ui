@@ -38,7 +38,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="png files/pngFiles.qrc">:/loginPage/loginPage.png</pixmap>
+    <pixmap resource="loginPage.qrc">:/png files/png files/loginPage.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="loginBtt">
@@ -54,7 +54,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="png files/pngFiles.qrc">:/loginPage/loginBtt.png</pixmap>
+    <pixmap resource="loginPage.qrc">:/png files/png files/loginBtt.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="signupBtt">
@@ -70,7 +70,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="png files/pngFiles.qrc">:/loginPage/signupBtt.png</pixmap>
+    <pixmap resource="loginPage.qrc">:/png files/png files/signupBtt.png</pixmap>
    </property>
   </widget>
   <widget class="QLineEdit" name="usernameTxt">
@@ -133,7 +133,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="png files/pngFiles.qrc"/>
+  <include location="loginPage.qrc"/>
  </resources>
  <connections/>
 </ui>
