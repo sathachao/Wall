@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="png files">
+  <qresource>
     <file>png files/loginBtt.png</file>
     <file>png files/loginPage.png</file>
     <file>png files/signupBtt.png</file>
