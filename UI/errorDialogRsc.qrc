@@ -1,0 +1,6 @@
+<RCC>
+  <qresource>
+    <file>png files/errorDialog.png</file>
+    <file>png files/okayBtt.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,7 @@
+<RCC>
+  <qresource>
+    <file>png files/confirmDialog.png</file>
+    <file>png files/noBtt.png</file>
+    <file>png files/yesBtt.png</file>
+  </qresource>
+</RCC>

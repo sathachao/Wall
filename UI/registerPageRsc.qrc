@@ -1,0 +1,6 @@
+<RCC>
+  <qresource>
+    <file>png files/registerBtt.png</file>
+    <file>png files/registrationPage.png</file>
+  </qresource>
+</RCC>
