@@ -3,23 +3,13 @@ __author__ = 'Satha'
 from PySide.QtCore import *
 from PySide.QtGui import *
 
-def clickable(widget):
+class ClickableLabel(QLabel):
+    def __init__(self,parent= None):
+        QLabel.__init__(self, parent)
 
-    class Filter(QObject):
+    def mouseReleaseEvent(self, e):
+        QLabel.mouseReleaseEvent(self,e)
+        self.emit(SIGNAL("clicked()"))
+        print("emit clicked()")
 
-        clicked = Signal()
 
-        def eventFilter(self, obj, event):
-
-            if obj == widget:
-                if event.type() == QEvent.MouseButtonRelease:
-                    if obj.rect().contains(event.pos()):
-                        self.clicked.emit()
-                        # The developer can opt for .emit(obj) to get the object within the slot.
-                        return True
-
-            return False
-
-    filter = Filter(widget)
-    widget.installEventFilter(filter)
-    return filter.clicked

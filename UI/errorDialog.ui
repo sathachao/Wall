@@ -44,7 +44,7 @@
     <pixmap resource="errorDialogRsc.qrc">:/png files/errorDialog.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="okayBtt">
+  <widget class="ClickableLabel" name="okayBtt">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -89,6 +89,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>ClickableLabel.py</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="errorDialogRsc.qrc"/>
  </resources>

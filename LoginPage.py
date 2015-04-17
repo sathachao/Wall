@@ -16,16 +16,18 @@ class LoginPage(QWidget):
         self.setWindowTitle("Wall Authentication System")
 
         loader = QUiLoader()
+        loader.registerCustomWidget(ClickableLabel)
+        print(loader.availableWidgets())
+
         ui = loader.load("./UI/loginPage.ui", self)
 
         self.loginBtt = ui.findChild(QLabel, "loginBtt")
-        self.registerBtt = ui.findChild(QLabel, "signupBtt")
-        clickable(self.loginBtt).connect(self.login)
-        clickable(self.registerBtt).connect(self.register)
-
         self.signupBtt = ui.findChild(QLabel, "signupBtt")
         self.usernameTxt = ui.findChild(QLineEdit, "usernameTxt")
         self.passwordTxt = ui.findChild(QLineEdit, "passwordTxt")
+
+        self.connect(self.loginBtt, SIGNAL("clicked()"), self.login)
+        self.connect(self.signupBtt, SIGNAL("clicked()"), self.register)
 
     def login(self):
         username = self.usernameTxt.text()

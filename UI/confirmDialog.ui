@@ -41,7 +41,7 @@
     <pixmap resource="confirmDialogRsc.qrc">:/png files/confirmDialog.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="yesBtt">
+  <widget class="ClickableLabel" name="yesBtt">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -57,7 +57,7 @@
     <pixmap resource="confirmDialogRsc.qrc">:/png files/yesBtt.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="noBtt">
+  <widget class="ClickableLabel" name="noBtt">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -102,6 +102,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>ClickableLabel.py</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="confirmDialogRsc.qrc"/>
  </resources>

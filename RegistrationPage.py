@@ -16,6 +16,7 @@ class RegistrationPage(QWidget):
         self.setWindowTitle("Registration Page")
 
         loader = QUiLoader()
+        loader.registerCustomWidget(ClickableLabel)
         self.ui = loader.load("./UI/registerPage.ui", self)
 
         self.firstnameTxt = self.ui.findChild(QLineEdit, "firstnameTxt")
@@ -24,10 +25,10 @@ class RegistrationPage(QWidget):
         self.passwordTxt = self.ui.findChild(QLineEdit, "passwordTxt")
         self.confirmTxt = self.ui.findChild(QLineEdit, "confirmTxt")
         self.emailTxt = self.ui.findChild(QLineEdit, "emailTxt")
-        self.registerBtt = self.ui.findChild(QLabel, "registerBtt")
+        self.registerBtt = self.ui.findChild(ClickableLabel, "registerBtt")
 
-        clickable(self.registerBtt).connect(self.register)
-        self.ui.exec_()
+        self.connect(self.registerBtt, SIGNAL("clicked()"), self.register)
+
 
     def register(self):
         #List[firstname,lastname,username,password,confirmPW,email]

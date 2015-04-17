@@ -243,7 +243,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="registerBtt">
+  <widget class="ClickableLabel" name="registerBtt">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -295,6 +295,13 @@
   <zorder>registerBtt</zorder>
   <zorder>warning</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>ClickableLabel.py</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="registerPageRsc.qrc"/>
  </resources>

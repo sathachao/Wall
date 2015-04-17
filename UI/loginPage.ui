@@ -57,7 +57,7 @@
     <pixmap resource="loginPageRsc.qrc">:/png files/loginBtt.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="signupBtt">
+  <widget class="ClickableLabel" name="signupBtt">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -139,7 +139,7 @@
   <customwidget>
    <class>ClickableLabel</class>
    <extends>QLabel</extends>
-   <header>clickablelabel.h</header>
+   <header>ClickableLabel.py</header>
   </customwidget>
  </customwidgets>
  <resources>

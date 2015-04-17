@@ -17,8 +17,8 @@ class ErrorDialog(QWidget):
         self.ui = loader.load("./UI/errorDialog.ui", self)
 
         self.errorTxt = self.ui.findChild(QLabel, "errorTxt")
-        self.okayBtt = self.ui.findChild(QLabel, "okayBtt")
-        clickable(self.okayBtt).connect(self.closeWindow)
+        self.okayBtt = self.ui.findChild(ClickableLabel, "okayBtt")
+        self.connect(self.okayBtt, SIGNAL("clicked()"), self.closeWindow)
         self.errorTxt.setText(errorText)
         self.ui.exec_()
 
