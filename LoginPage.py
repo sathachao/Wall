@@ -5,9 +5,12 @@ from PySide.QtCore import *
 from PySide.QtUiTools import *
 from ClickableLabel import *
 from DatabaseManager import *
+from Member import *
 from RegistrationPage import *
+from WallSystem import *
 import ErrorDialog
 import UI.loginPageRsc_rc
+from Storage import *
 
 
 class LoginPage(QWidget):
@@ -32,16 +35,10 @@ class LoginPage(QWidget):
     def login(self):
         username = self.usernameTxt.text()
         password = self.passwordTxt.text()
-
-        DatabaseManager.execute("SELECT username, password FROM members WHERE username = '%s';" %(username))
-
-        outputList = DatabaseManager.fetch()
-        print(username, password)
-        print(outputList)
-        if len(outputList) == 0:
-            err = ErrorDialog.ErrorDialog("This username does not exist", self)
-        elif username == outputList[0][0] and password == outputList[0][1]:
-            print("Login successful")
+        if Storage.checkLogin(username,password):
+            user = Storage.getUser(username)
+            system = WallSystem(user)
+            self.hide()
         else:
             err = ErrorDialog.ErrorDialog("Wrong Password", self)
 
