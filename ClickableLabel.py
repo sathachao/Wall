@@ -11,5 +11,3 @@ class ClickableLabel(QLabel):
         QLabel.mouseReleaseEvent(self,e)
         self.emit(SIGNAL("clicked()"))
         print("emit clicked()")
-
-
