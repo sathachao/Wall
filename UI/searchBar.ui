@@ -121,6 +121,12 @@
    <property name="editable">
     <bool>true</bool>
    </property>
+   <property name="currentIndex">
+    <number>-1</number>
+   </property>
+   <property name="insertPolicy">
+    <enum>QComboBox::NoInsert</enum>
+   </property>
   </widget>
   <zorder>bg</zorder>
   <zorder>backBtt</zorder>

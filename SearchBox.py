@@ -8,10 +8,4 @@ class SearchBox(QComboBox):
         QComboBox.__init__(self, parent)
 
     def textChanged(self, event):
-        self.showPopup()
-
-    def keyPressEvent(self, event):
-        pass
-
-    def keyReleaseEvent(self, event):
         pass
