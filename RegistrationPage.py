@@ -13,21 +13,23 @@ class RegistrationPage(QWidget):
     def __init__(self, parent=None):
         QWidget.__init__(self, parent=parent)
 
-        self.setWindowTitle("Registration Page")
-
         loader = QUiLoader()
         loader.registerCustomWidget(ClickableLabel)
         self.ui = loader.load("./UI/registerPage.ui", self)
+
+        self.ui.setWindowTitle("Registration Page")
 
         self.firstnameTxt = self.ui.findChild(QLineEdit, "firstnameTxt")
         self.lastnameTxt = self.ui.findChild(QLineEdit, "lastnameTxt")
         self.usernameTxt = self.ui.findChild(QLineEdit, "usernameTxt")
         self.passwordTxt = self.ui.findChild(QLineEdit, "passwordTxt")
         self.confirmTxt = self.ui.findChild(QLineEdit, "confirmTxt")
-        self.emailTxt = self.ui.findChild(QLineEdit, "emailTxt")
+
         self.registerBtt = self.ui.findChild(ClickableLabel, "registerBtt")
 
         self.connect(self.registerBtt, SIGNAL("clicked()"), self.register)
+
+        self.ui.exec()
 
 
     def register(self):
@@ -35,7 +37,7 @@ class RegistrationPage(QWidget):
 
         valid = True
         data = [self.firstnameTxt.text(), self.lastnameTxt.text(), self.usernameTxt.text(),
-                self.passwordTxt.text(), self.confirmTxt.text(), self.emailTxt.text()]
+                self.passwordTxt.text(), self.confirmTxt.text()]
 
         DatabaseManager.execute("SELECT username FROM members WHERE username = '%s';" %(data[2]))
 
@@ -58,8 +60,8 @@ class RegistrationPage(QWidget):
         if valid == True:
             DatabaseManager.execute("SELECT count(*) FROM members")
             wallID = DatabaseManager.fetch()[0][0]
-            DatabaseManager.execute("INSERT INTO members(username,password,firstname,lastname,email,wallid) VALUES(%s, %s, %s, %s, %s,%s);",
-                                    [data[2],data[3],data[0],data[1],data[5],wallID])
+            DatabaseManager.execute("INSERT INTO members(username,password,firstname,lastname) VALUES(%s, %s, %s, %s);",
+                                    [data[2],data[3],data[0],data[1]])
             errText = "Registration successful"
 
         err = ErrorDialog(errText, self)

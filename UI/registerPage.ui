@@ -104,25 +104,6 @@
     <string>Confirm</string>
    </property>
   </widget>
-  <widget class="QLabel" name="emailLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>280</y>
-     <width>41</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Impact</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>E-mail</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="usernameLabel">
    <property name="geometry">
     <rect>
@@ -233,16 +214,6 @@
     <enum>QLineEdit::Password</enum>
    </property>
   </widget>
-  <widget class="QLineEdit" name="emailTxt">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>280</y>
-     <width>211</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="ClickableLabel" name="registerBtt">
    <property name="geometry">
     <rect>
@@ -263,7 +234,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>310</y>
+     <y>280</y>
      <width>281</width>
      <height>20</height>
     </rect>
@@ -283,7 +254,6 @@
   <zorder>lastnameLabel</zorder>
   <zorder>passwordlabel</zorder>
   <zorder>confirmlabel</zorder>
-  <zorder>emailLabel</zorder>
   <zorder>usernameLabel</zorder>
   <zorder>confirmlabel_2</zorder>
   <zorder>firstnameTxt</zorder>
@@ -291,7 +261,6 @@
   <zorder>usernameTxt</zorder>
   <zorder>passwordTxt</zorder>
   <zorder>confirmTxt</zorder>
-  <zorder>emailTxt</zorder>
   <zorder>registerBtt</zorder>
   <zorder>warning</zorder>
  </widget>

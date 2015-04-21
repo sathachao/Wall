@@ -24,3 +24,4 @@ class SearchBar(QWidget):
         self.searchBox = self.ui.findChild(SearchBox, "searchBox")
 
         self.ui.show()
+
