@@ -45,16 +45,6 @@
     <pixmap resource="searchBarRsc.qrc">:/png files/homeBtt.png</pixmap>
    </property>
   </widget>
-  <widget class="SearchBox" name="searchBox">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>10</y>
-     <width>500</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="bg">
    <property name="geometry">
     <rect>
@@ -119,13 +109,26 @@
     <string>nameLabel</string>
    </property>
   </widget>
+  <widget class="SearchBox" name="searchBox">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>10</y>
+     <width>490</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>bg</zorder>
   <zorder>backBtt</zorder>
   <zorder>homeBtt</zorder>
-  <zorder>searchBox</zorder>
   <zorder>searchBtt</zorder>
   <zorder>settingBtt</zorder>
   <zorder>label</zorder>
+  <zorder>searchBox</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -135,7 +138,7 @@
   </customwidget>
   <customwidget>
    <class>SearchBox</class>
-   <extends>QLineEdit</extends>
+   <extends>QComboBox</extends>
    <header>SearchBox.py</header>
   </customwidget>
  </customwidgets>
