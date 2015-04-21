@@ -37,7 +37,7 @@ class LoginPage(QWidget):
         password = self.passwordTxt.text()
         if Storage.checkLogin(username,password):
             user = Storage.getUser(username)
-            system = WallSystem(user)
+            self.system = WallSystem(user)
             self.hide()
         else:
             err = ErrorDialog.ErrorDialog("Wrong Password", self)
