@@ -57,7 +57,6 @@ class RegistrationPage(QWidget):
 
         if valid == True:
             DatabaseManager.execute("SELECT count(*) FROM members")
-            wallID = DatabaseManager.fetch()[0][0]
             DatabaseManager.execute("INSERT INTO members(username,password,firstname,lastname) VALUES(%s, %s, %s, %s);",
                                     [data[2],data[3],data[0],data[1]])
             errText = "Registration successful"

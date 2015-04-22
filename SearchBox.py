@@ -8,5 +8,11 @@ class SearchBox(QComboBox):
     def __init__(self, parent=None):
         QComboBox.__init__(self, parent)
 
-    def textChanged(self, event):
-        Storage.getUser("")
+    def editTextChanged(self, text):
+        members = Storage.getUser(self.currentText())
+        memberList = list()
+        for member in members:
+            memberList.append(member.firstname + " " + member.lastname)
+        self.clear()
+        self.addItems(memberList)
+        self.showPopup()
