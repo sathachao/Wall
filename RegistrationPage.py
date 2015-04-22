@@ -5,7 +5,7 @@ from PySide.QtCore import *
 from PySide.QtUiTools import *
 from ClickableLabel import *
 import UI.registerPageRsc_rc
-from DatabaseManager import *
+from Storage import *
 from ErrorDialog import *
 
 
@@ -39,9 +39,7 @@ class RegistrationPage(QWidget):
         data = [self.firstnameTxt.text(), self.lastnameTxt.text(), self.usernameTxt.text(),
                 self.passwordTxt.text(), self.confirmTxt.text()]
 
-        DatabaseManager.execute("SELECT username FROM members WHERE username = '%s';" %(data[2]))
-
-        if len(DatabaseManager.fetch()) > 0:
+        if Storage.checkSignup(self.usernameTxt.text()):
             valid = False
             errText = "This username already exists"
 
