@@ -69,8 +69,8 @@ class Storage():
     @staticmethod
     def addProjectTags(username,name,tags):
         for tag in tags:
-            DatabaseManager.execute("INSERT INTO project_tags(username,proj_name,tag) VALUES('%s','%s','%s')"
-                                    %(username) %(name) %(tag))
+            DatabaseManager.execute("INSERT INTO project_tags(username,proj_name,tag) VALUES(%s,%s,%s)"
+                                    ,[username, name,tag])
 
 #================Methods for SearchBox=====================
 
@@ -106,5 +106,4 @@ class Storage():
         projects = list()
         for project in DatabaseManager.fetch():
             projects.append(Storage.getProject(project[0], project[2]))
-        return projects            DatabaseManager.execute("INSERT INTO project_tags(username,proj_name,tag) VALUES(%s,%s,%s)"
-                                    ,[username, name,tag])
+        return projects
