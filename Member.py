@@ -1,15 +1,13 @@
 __author__ = 'Faaiz'
-from Wall import *
 
 
 class Member():
-    def __init__(self,username,password,firstname,lastname,tags):
+    def __init__(self, firstname, lastname, username, password, tags):
         self.firstname = firstname
         self.lastname = lastname
         self.username = username
         self.password = password
         self.tags = tags
-        self.wall = Wall(self)
 
-
-
+    def getInfo(self):
+        return [self.firstname, self.lastname, self.username, self.password, self.tags]

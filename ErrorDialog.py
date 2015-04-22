@@ -24,4 +24,3 @@ class ErrorDialog(QWidget):
 
     def closeWindow(self):
         self.ui.close()
-
