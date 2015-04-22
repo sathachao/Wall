@@ -1,0 +1,9 @@
+<RCC>
+  <qresource>
+    <file>png files/settingBtt.png</file>
+    <file>png files/searchBtt.png</file>
+    <file>png files/searchBarBG.png</file>
+    <file>png files/backBtt.png</file>
+    <file>png files/homeBtt.png</file>
+  </qresource>
+</RCC>
