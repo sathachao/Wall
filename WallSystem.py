@@ -7,9 +7,7 @@ from Storage import *
 class WallSystem:
     def __init__(self, user):
         self.user = user
-
-        self.directory = "WallPage"
-        self.history = ["WallPage"]
+        self.history = [user.wall]
         self.observers = []
         self.page = Page(self)
         self.notifyObserver()
@@ -19,7 +17,7 @@ class WallSystem:
 
     def notifyObserver(self):
         for i in self.observers:
-            i.updateObserver(self.user,self.directory,self.history)
+            i.updateObserver(self.user,self.history)
 
     def addProject(self,name,tags,description):
         Storage.addProject(self.user.username,name,description)

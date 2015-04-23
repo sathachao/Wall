@@ -1,5 +1,6 @@
 __author__ = 'Faaiz'
 import psycopg2
+from Wall import *
 from Member import *
 from Project import *
 from DatabaseManager import *
@@ -38,18 +39,34 @@ class Storage():
     @staticmethod
     def getUser(username):
         DatabaseManager.execute("SELECT * FROM members WHERE username = '%s'" %(username))
-        row = DatabaseManager.fetch()[0]
+        memberData = DatabaseManager.fetch()[0]
         DatabaseManager.execute("SELECT tag FROM member_tags WHERE username = '%s'" %(username))
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
-        return Member(username=row[0],password=row[1],firstname=row[2],lastname=row[3],tags=tags)
+        member = Member(username=memberData[0],password=memberData[1],firstname=memberData[2],lastname=memberData[3],tags=tags)
+        wall = Wall(username,Storage.getProjects(username))
+        member.wall = wall
+        return member
+
+    @staticmethod
+    def getProjects(username):
+        DatabaseManager.execute("SELECT * FROM projects WHERE username = '%s'"  %username)
+        rows = DatabaseManager.fetch()
+        projects = []
+        for project in rows:
+            DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = %s", [project[0], username])
+            tags = DatabaseManager.fetch()
+            for i in range(len(tags)):
+	            tags[i]=tags[i][0]
+            projects.append(Project(project[0],tags,project[1]))
+        return projects
 
     @staticmethod
     def getProject(projectName, username):
-        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = '%s' and username = '&s'", [projectName, username])
+        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s and username = %s", [projectName, username])
         row = DatabaseManager.fetch()[0]
-        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = '%s' and username = '&s'", [projectName, username])
+        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = %s", [projectName, username])
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]

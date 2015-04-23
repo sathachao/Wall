@@ -8,6 +8,6 @@ class Member():
         self.username = username
         self.password = password
         self.tags = tags
-
+        self.wall = None
     def getInfo(self):
         return [self.firstname, self.lastname, self.username, self.password, self.tags]

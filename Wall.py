@@ -2,9 +2,9 @@ __author__ = 'Faaiz'
 
 
 class Wall:
-    def __init__(self,owner):
+    def __init__(self,owner,projects):
         self.owner = owner
-        self.projects = []
+        self.projects = projects
 
     def addProject(self,p):
         self.projects.append(p)
