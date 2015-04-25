@@ -1,5 +1,6 @@
 <RCC>
   <qresource>
     <file>png files/Bg1.png</file>
+    <file>png files/profile.png</file>
   </qresource>
 </RCC>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>191</width>
+    <height>261</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>191</width>
+    <height>261</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>191</width>
+    <height>261</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="ClickableLabel" name="sourcecodeLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>171</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0,0,0);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/sourcecode_button.png</pixmap>
+   </property>
+  </widget>
+  <widget class="ClickableLabel" name="descriptionLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>171</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0,0,0);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/descriptionButton.png</pixmap>
+   </property>
+  </widget>
+  <widget class="ClickableLabel" name="photosLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>171</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0,0,0);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/photos_button.png</pixmap>
+   </property>
+  </widget>
+  <widget class="ClickableLabel" name="commentsLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>210</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0,0,0);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/comments_button.png</pixmap>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>ClickableLabel.py</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="projectPageTabRsc.qrc"/>
+ </resources>
+ <connections/>
+</ui>

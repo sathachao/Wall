@@ -29,16 +29,22 @@
    <widget class="QFrame" name="contentFrame">
     <property name="geometry">
      <rect>
-      <x>191</x>
-      <y>301</y>
+      <x>190</x>
+      <y>300</y>
       <width>611</width>
-      <height>261</height>
+      <height>311</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>611</width>
+      <height>311</height>
+     </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>611</width>
-      <height>261</height>
+      <height>311</height>
      </size>
     </property>
     <property name="frameShape">
@@ -52,16 +58,19 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>50</y>
-      <width>801</width>
-      <height>251</height>
+      <y>60</y>
+      <width>811</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>801</width>
-      <height>251</height>
+      <width>1000</width>
+      <height>1000</height>
      </size>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -79,10 +88,22 @@
       <height>261</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
     <property name="maximumSize">
      <size>
       <width>191</width>
-      <height>261</height>
+      <height>1000</height>
      </size>
     </property>
     <property name="frameShape">
@@ -98,13 +119,19 @@
       <x>-1</x>
       <y>-1</y>
       <width>801</width>
-      <height>51</height>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>801</width>
+      <height>61</height>
+     </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>801</width>
-      <height>51</height>
+      <height>61</height>
      </size>
     </property>
     <property name="frameShape">
@@ -114,6 +141,10 @@
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <zorder>headerFrame</zorder>
+   <zorder>tabFrame</zorder>
+   <zorder>frame</zorder>
+   <zorder>contentFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

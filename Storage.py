@@ -45,7 +45,7 @@ class Storage():
         for i in range(len(tags)):
             tags[i] = tags[i][0]
         member = Member(username=memberData[0],password=memberData[1],firstname=memberData[2],lastname=memberData[3],tags=tags)
-        wall = Wall(username,Storage.getProjects(username))
+        wall = Wall(member,Storage.getProjects(username))
         member.wall = wall
         return member
 

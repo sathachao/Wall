@@ -2,24 +2,25 @@ __author__ = 'Faaiz'
 from PySide.QtUiTools import *
 from PySide.QtGui import *
 from WallObserver import *
-from Project import *
 from Wall import *
+from Project import *
 
-class WallPageTab(QWidget,WallObserver):
+
+class ProjectPageHeader(QWidget,WallObserver):
     def __init__(self,system):
         QWidget.__init__(self,None)
         self.system = system
         self.system.addObserver(self)
         loader = QUiLoader()
+        dialog = loader.load("./UI/projectPageHeader.ui")
+        self.nameText = dialog.findChild(QLabel,"name")
         layout = QVBoxLayout()
-        dialog = loader.load("./UI/wallPageTab.ui")
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
         self.setLayout(layout)
         self.hide()
 
     def updateObserver(self,user,history):
-        if type(history[-1]) == Wall:
+        if type(history[-1]) == Project:
+            self.nameText.setText(history[-1].name)
             self.show()
-        else:
-            self.hide()

@@ -10,12 +10,12 @@ class WallSystem:
         self.history = [user.wall]
         self.observers = []
         self.page = Page(self)
-        self.notifyObserver()
+        self.notifyObservers()
 
     def addObserver(self,o):
         self.observers.append(o)
 
-    def notifyObserver(self):
+    def notifyObservers(self):
         for i in self.observers:
             i.updateObserver(self.user,self.history)
 

@@ -1,0 +1,8 @@
+<RCC>
+  <qresource>
+    <file>png files/comments_button.png</file>
+    <file>png files/descriptionButton.png</file>
+    <file>png files/photos_button.png</file>
+    <file>png files/sourcecode_button.png</file>
+  </qresource>
+</RCC>

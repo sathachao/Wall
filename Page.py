@@ -1,12 +1,12 @@
 __author__ = 'Faaiz'
 from PySide.QtGui import *
 from PySide.QtUiTools import *
-from WallObserver import *
 from WallPageContent import *
 from WallPageHeader import *
 from WallPageTab import *
-from Member import *
-from Project import *
+from ProjectPageHeader import *
+from ProjectPageTab import *
+from ProjectPageContent import *
 import UI.wallPageHeaderRsc_rc
 
 
@@ -20,17 +20,35 @@ class Page():
         self.tabFrame = self.dialog.findChild(QFrame,"tabFrame")
         self.searchBarFrame = self.dialog.findChild(QFrame,"searchBarFrame")
 
+        self.headerFrame.setContentsMargins(0,0,0,0)
+        self.tabFrame.setContentsMargins(0,0,0,0)
+        self.contentFrame.setContentsMargins(0,0,0,0)
+
         self.headerLayout = QVBoxLayout()
+        self.headerLayout.setContentsMargins(0,0,0,0)
         self.tabLayout = QVBoxLayout()
+        self.tabLayout.setContentsMargins(0,0,0,0)
         self.contentLayout = QVBoxLayout()
+        self.contentLayout.setContentsMargins(0,0,0,0)
 
         self.wallPageHeader = WallPageHeader(self.system)
         self.wallPageContent = WallPageContent(self.system)
         self.wallPageTab = WallPageTab(self.system)
 
+        self.projectPageHeader = ProjectPageHeader(self.system)
+        self.projectPageContent = ProjectPageContent(self.system)
+        self.projectPageTab = ProjectPageTab(self.system,self.projectPageContent)
+
         self.headerLayout.addWidget(self.wallPageHeader)
         self.contentLayout.addWidget(self.wallPageContent)
         self.tabLayout.addWidget(self.wallPageTab)
+        self.headerLayout.addWidget(self.projectPageHeader)
+        self.tabLayout.addWidget(self.projectPageTab)
+        self.contentLayout.addWidget(self.projectPageContent.descriptionTab)
+        self.contentLayout.addWidget(self.projectPageContent.commentTab)
+        self.contentLayout.addWidget(self.projectPageContent.photoTab)
+        self.contentLayout.addWidget(self.projectPageContent.sourcecodeTab)
+
         self.headerFrame.setLayout(self.headerLayout)
         self.tabFrame.setLayout(self.tabLayout)
         self.contentFrame.setLayout(self.contentLayout)
