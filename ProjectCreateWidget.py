@@ -40,8 +40,9 @@ class ProjectCreateWidget(QDialog):
             tags.append(self.model.item(row).text())
         name = self.projectNameLine.text()
         description = self.descriptionText.toPlainText()
-        self.system.addProject(name,tags,description)
-        self.close()
+        if name not in [project.name for project in self.system.user.wall.projects]:
+            self.system.addProject(name,tags,description)
+            self.close()
 
     def remove(self):
         self.model.takeRow(self.list.selectedIndexes()[0].row())

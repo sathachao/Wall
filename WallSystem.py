@@ -25,5 +25,10 @@ class WallSystem:
         self.user.wall.addProject(Project(name,tags,description))
         self.notifyObservers()
 
+    def removeProject(self,project):
+        Storage.removeProject(self.user.username,project)
+        self.user.wall.removeProject(project)
+        self.notifyObservers()
+
     def setPage(self, pageType, member, project=None):
         pass

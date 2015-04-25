@@ -8,3 +8,6 @@ class Wall:
 
     def addProject(self,p):
         self.projects.append(p)
+
+    def removeProject(self,p):
+        self.projects.remove(p)

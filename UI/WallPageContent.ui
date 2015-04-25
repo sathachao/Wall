@@ -37,9 +37,9 @@
    <widget class="QScrollArea" name="thumbnailArea">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
-      <width>611</width>
+      <width>601</width>
       <height>231</height>
      </rect>
     </property>
@@ -51,7 +51,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>609</width>
+       <width>599</width>
        <height>229</height>
       </rect>
      </property>

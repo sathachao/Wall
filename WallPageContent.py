@@ -37,6 +37,10 @@ class WallPageContent(QWidget,WallObserver):
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Wall:
+            while self.thumbnailLayout.count()!= 0:
+                widget = self.thumbnailLayout.takeAt(0).widget()
+                self.thumbnailLayout.removeWidget(widget)
+                widget.setParent(None)
             for project in history[-1].projects:
                 self.thumbnailLayout.addWidget(ProjectThumbnail(project,self.system))
             self.show()

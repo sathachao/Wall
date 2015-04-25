@@ -74,21 +74,24 @@ class Storage():
 
     @staticmethod
     def updateUserTag(user):
-        DatabaseManager.execute("DELETE FROM member_tags WHERE username ='%s'" %(user.username))
+        DatabaseManager.execute("DELETE FROM member_tags WHERE username ='%s'" % user.username)
         for tag in user.tags:
-            DatabaseManager.execute("INSERT INTO member_tags(username,tag) VALUES('%s','%s')" %(user.username) %(tag))
+            DatabaseManager.execute("INSERT INTO member_tags(username,tag) VALUES('%s','%s')" % user.username % tag)
 
     @staticmethod
     def addProject(username,name,description):
         DatabaseManager.execute("INSERT INTO projects(username,proj_name,proj_description) VALUES(%s,%s,%s)"
-                                ,[username,name, description])
+                                , [username, name, description])
 
     @staticmethod
     def addProjectTags(username,name,tags):
         for tag in tags:
             DatabaseManager.execute("INSERT INTO project_tags(username,proj_name,tag) VALUES(%s,%s,%s)"
-                                    ,[username, name,tag])
+                                    , [username, name,tag])
 
+    @staticmethod
+    def removeProject(username,project):
+        DatabaseManager.execute("DELETE FROM projects WHERE username = %s and proj_name = %s", [username, project.name])
 #================Methods for SearchBox=====================
 
     @staticmethod
