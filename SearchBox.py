@@ -7,12 +7,26 @@ from Storage import *
 class SearchBox(QComboBox):
     def __init__(self, parent=None):
         QComboBox.__init__(self, parent)
+        self.installEventFilter(self)
 
-    def editTextChanged(self, text):
-        members = Storage.getUser(self.currentText())
-        memberList = list()
-        for member in members:
-            memberList.append(member.firstname + " " + member.lastname)
-        self.clear()
-        self.addItems(memberList)
-        self.showPopup()
+    def eventFilter(self, widget, event):
+        if event.type() == QEvent.KeyPress:
+            if event.key() == Qt.Key_Return:
+                self.showPopup()
+            txt = self.currentText()
+            self.clear()
+            self.addItem(txt)
+        if event.type() == QEvent.KeyRelease:
+            txt = self.currentText()
+            members = Storage.findUser(txt)
+            memberList = list()
+            if members is not None:
+                #memberList.append(txt)
+                for member in members:
+                    memberList.append(member.firstname + " " + member.lastname)
+                self.addItems(memberList)
+            else:
+                self.addItem(txt)
+
+
+        return QComboBox.eventFilter(self, widget, event)

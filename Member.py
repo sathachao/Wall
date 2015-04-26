@@ -11,3 +11,6 @@ class Member():
         self.wall = None
     def getInfo(self):
         return [self.firstname, self.lastname, self.username, self.password, self.tags]
+
+    def __str__(self):
+        return self.firstname + " " + self.lastname

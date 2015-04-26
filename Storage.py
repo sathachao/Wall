@@ -1,6 +1,5 @@
 __author__ = 'Faaiz'
 import psycopg2
-from Wall import *
 from Member import *
 from Project import *
 from DatabaseManager import *
@@ -38,9 +37,9 @@ class Storage():
 
     @staticmethod
     def getUser(username):
-        DatabaseManager.execute("SELECT * FROM members WHERE username = '%s'" %(username))
+        DatabaseManager.execute("SELECT * FROM members WHERE username = %s", [username])
         memberData = DatabaseManager.fetch()[0]
-        DatabaseManager.execute("SELECT tag FROM member_tags WHERE username = '%s'" %(username))
+        DatabaseManager.execute("SELECT tag FROM member_tags WHERE username = %s", [username])
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
@@ -64,9 +63,12 @@ class Storage():
 
     @staticmethod
     def getProject(projectName, username):
-        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s and username = %s", [projectName, username])
-        row = DatabaseManager.fetch()[0]
-        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = %s", [projectName, username])
+        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s and username = &s", [projectName, username])
+        data = DatabaseManager.fetch()
+        if len(data) == 0:
+            return None
+        row = data[0]
+        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = &s", [projectName, username])
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
@@ -74,9 +76,9 @@ class Storage():
 
     @staticmethod
     def updateUserTag(user):
-        DatabaseManager.execute("DELETE FROM member_tags WHERE username ='%s'" % user.username)
+        DatabaseManager.execute("DELETE FROM member_tags WHERE username = %s" ,[user.username])
         for tag in user.tags:
-            DatabaseManager.execute("INSERT INTO member_tags(username,tag) VALUES('%s','%s')" % user.username % tag)
+            DatabaseManager.execute("INSERT INTO member_tags(username,tag) VALUES(%s,%s)" ,[user.username, tag])
 
     @staticmethod
     def addProject(username,name,description):
@@ -96,16 +98,19 @@ class Storage():
 
     @staticmethod
     def findUser(keyword):
-        DatabaseManager.execute("SELECT username FROM members WHERE firstname = '%s' or lastname = '%s'")
+        DatabaseManager.execute("SELECT username FROM members WHERE firstname like %s", [keyword+'%'])
         members = list()
-        for username in DatabaseManager.fetch():
+        data = DatabaseManager.fetch()
+        if len(data) == 0:
+            return None
+        for username in data:
             members.append(Storage.getUser(username))
         return members
 
     @staticmethod
     def findMemberWithTag(tag):
         DatabaseManager.execute("SELECT username FROM members WHERE username in" +
-                                "(SELECT username FROM member_tags WHERE tag = '%s')", [tag])
+                                "(SELECT username FROM member_tags WHERE tag = %s%)", [tag])
         members = list()
         for username in DatabaseManager.fetch():
             members.append(Storage.getUser(username))
@@ -113,7 +118,7 @@ class Storage():
 
     @staticmethod
     def findProject(keyword):
-        DatabaseManager.execute("SELECT proj_name, username FROM projects WHERE proj_name = '%s'", [keyword])
+        DatabaseManager.execute("SELECT proj_name, username FROM projects WHERE proj_name like %s", [keyword+'%'])
         projects = list()
         for proj_name, username in DatabaseManager.fetch():
             projects.append(Storage.getProject(proj_name, username))
@@ -122,7 +127,7 @@ class Storage():
     @staticmethod
     def findProjectWithTag(tag):
         DatabaseManager.execute("SELECT * FROM projects WHERE proj_name in" +
-                                "(SELECT proj_name FROM project_tags WHERE tag = '%s')", [tag])
+                                "(SELECT proj_name FROM project_tags WHERE tag = %s)", [tag])
         projects = list()
         for project in DatabaseManager.fetch():
             projects.append(Storage.getProject(project[0], project[2]))
