@@ -5,7 +5,6 @@ from Wall import *
 from Member import *
 from Project import *
 from DatabaseManager import *
-from Wall import *
 
 class Storage():
 
