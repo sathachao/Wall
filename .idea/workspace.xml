@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df98865c-15e2-46df-8fbf-1cb871e12d52" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseManager.py" afterPath="$PROJECT_DIR$/DatabaseManager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Wall.iws" />
@@ -671,13 +672,7 @@
       <option name="project" value="LOCAL" />
       <updated>1430199816978</updated>
     </task>
-    <task id="LOCAL-00015" summary="- Storage fixed">
-      <created>1430200002537</created>
-      <option name="number" value="00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1430200002537</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
