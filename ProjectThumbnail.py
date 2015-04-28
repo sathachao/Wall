@@ -16,15 +16,14 @@ class ProjectThumbnail(QWidget):
         self.removeBt = dialog.findChild(QPushButton,"removeBt")
 
         self.nameText.setText(self.project.name)
+        self.system.fitText(self.nameText,250,20)
         self.connect(self.removeBt,SIGNAL("clicked()"),self.remove)
         self.connect(self.picture,SIGNAL("clicked()"),self.openProject)
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
         layout.addWidget(dialog)
-        self.setLayout(layout)
 
     def remove(self):
         self.system.removeProject(self.project)
-        self.system.notifyObservers()
 
     def openProject(self):
         self.system.history.append(self.project)

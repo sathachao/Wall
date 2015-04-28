@@ -6,12 +6,14 @@ from PySide.QtUiTools import *
 from ClickableLabel import *
 from SearchBox import *
 import UI.searchBarRsc_rc
+from WallObserver import *
 
 
 class SearchBar(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, system,parent=None):
         QWidget.__init__(self, parent)
-
+        self.system = system
+        #self.system.addObserver(self)
         loader = QUiLoader()
         loader.registerCustomWidget(ClickableLabel)
         loader.registerCustomWidget(SearchBox)
@@ -22,5 +24,18 @@ class SearchBar(QWidget):
         self.settingBtt = self.ui.findChild(ClickableLabel, "settingBtt")
         self.nameLabel = self.ui.findChild(QLabel, "nameLabel")
         self.searchBox = self.ui.findChild(SearchBox, "searchBox")
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.ui)
+        layout.setContentsMargins(0,0,0,0)
 
-        self.ui.show()
+        self.connect(self.backBtt,SIGNAL("clicked()"),self.back)
+        self.connect(self.searchBtt,SIGNAL("clicked()"),self.goTo)
+
+    def back(self):
+        if len(self.system.history)>1:
+            self.system.history.pop()
+            self.system.notifyObservers()
+
+    def goTo(self):
+        name = self.searchBox.currentText().split()
+        self.system.goTo(name[0],name[1])

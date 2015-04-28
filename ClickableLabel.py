@@ -4,7 +4,7 @@ from PySide.QtCore import *
 from PySide.QtGui import *
 
 class ClickableLabel(QLabel):
-    def __init__(self,parent= None):
+    def __init__(self,parent):
         QLabel.__init__(self, parent)
 
     def mouseReleaseEvent(self, e):

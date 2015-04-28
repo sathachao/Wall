@@ -2,23 +2,26 @@ __author__ = 'Faaiz'
 from PySide.QtUiTools import *
 from PySide.QtGui import *
 from PySide.QtCore import *
+from Wall import *
+from WallObserver import *
 
-class TagEditWidget(QDialog):
+
+class TagEditWidget(QDialog,WallObserver):
     def __init__(self,system):
         QDialog.__init__(self)
         self.setWindowFlags(Qt.CustomizeWindowHint)
         self.system = system
+        self.system.addObserver(self)
         self.loader = QUiLoader()
-        self.dialog = self.loader.load("./tagEditDialog.ui")
+        self.dialog = self.loader.load("./UI/tagEditDialog.ui")
         self.okBt = self.dialog.findChild(QPushButton,"okBt")
         self.removeBt = self.dialog.findChild(QPushButton,"removeBt")
         self.addBt = self.dialog.findChild(QPushButton,"addBt")
         self.cancelBt = self.dialog.findChild(QPushButton,"cancelBt")
         self.tagLine = self.dialog.findChild(QLineEdit,"tagLine")
         self.list = self.dialog.findChild(QListView,"list")
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
         layout.addWidget(self.dialog)
-        self.setLayout(layout)
         self.cancelBt.clicked.connect(self.close)
         self.addBt.clicked.connect(self.add)
         self.removeBt.clicked.connect(self.remove)
@@ -31,7 +34,10 @@ class TagEditWidget(QDialog):
         tags = []
         for row in range(self.model.rowCount()):
             tags.append(self.model.item(row).text())
-        self.system.confirmTagEdit(tags)
+        if type(self.system.history[-1]) == Wall:
+            self.system.editUserTags(tags)
+        else:
+            self.system.editProjectTags(self.system.history[-1],tags)
         self.close()
 
     def remove(self):
@@ -48,10 +54,14 @@ class TagEditWidget(QDialog):
         self.close()
 
     def closeEvent(self, *args, **kwargs):
-        self.system.closeDialog()
+        self.close()
 
-    def update(self, user):
-        for tag in user.tags:
-            self.model.appendRow((QStandardItem(tag)))
+    def updateObserver(self,user,history):
+        if type(history[-1])==Wall:
+            tags =  history[-1].owner.tags
+        else:
+            tags = history[-1].tags
+        for tag in tags:
+                self.model.appendRow((QStandardItem(tag)))
 
 

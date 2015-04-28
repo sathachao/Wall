@@ -8,7 +8,7 @@ from ProjectPageHeader import *
 from ProjectPageTab import *
 from ProjectPageContent import *
 import UI.wallPageHeaderRsc_rc
-
+from SearchBar import *
 
 class Page():
     def __init__(self,sys):
@@ -23,6 +23,7 @@ class Page():
         self.headerFrame.setContentsMargins(0,0,0,0)
         self.tabFrame.setContentsMargins(0,0,0,0)
         self.contentFrame.setContentsMargins(0,0,0,0)
+        self.searchBarFrame.setContentsMargins(0,0,0,0)
 
         self.headerLayout = QVBoxLayout()
         self.headerLayout.setContentsMargins(0,0,0,0)
@@ -30,6 +31,8 @@ class Page():
         self.tabLayout.setContentsMargins(0,0,0,0)
         self.contentLayout = QVBoxLayout()
         self.contentLayout.setContentsMargins(0,0,0,0)
+        self.searchBarLayout = QVBoxLayout()
+        self.searchBarLayout.setContentsMargins(0,0,0,0)
 
         self.wallPageHeader = WallPageHeader(self.system)
         self.wallPageContent = WallPageContent(self.system)
@@ -48,10 +51,12 @@ class Page():
         self.contentLayout.addWidget(self.projectPageContent.commentTab)
         self.contentLayout.addWidget(self.projectPageContent.photoTab)
         self.contentLayout.addWidget(self.projectPageContent.sourcecodeTab)
+        self.searchBarLayout.addWidget(SearchBar(self.system))
 
         self.headerFrame.setLayout(self.headerLayout)
         self.tabFrame.setLayout(self.tabLayout)
         self.contentFrame.setLayout(self.contentLayout)
+        self.searchBarFrame.setLayout(self.searchBarLayout)
         self.dialog.show()
 
 

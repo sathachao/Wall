@@ -1,5 +1,7 @@
 __author__ = 'Faaiz'
 import psycopg2
+from Comment import *
+from Wall import *
 from Member import *
 from Project import *
 from DatabaseManager import *
@@ -36,6 +38,12 @@ class Storage():
         return False
 
     @staticmethod
+    def getUserByName(first,last):
+        DatabaseManager.execute("SELECT username FROM members WHERE firstname = %s AND lastname = %s",
+                                [first, last])
+        return Storage.getUser(DatabaseManager.fetch()[0][0])
+
+    @staticmethod
     def getUser(username):
         DatabaseManager.execute("SELECT * FROM members WHERE username = %s", [username])
         memberData = DatabaseManager.fetch()[0]
@@ -44,41 +52,61 @@ class Storage():
         for i in range(len(tags)):
             tags[i] = tags[i][0]
         member = Member(username=memberData[0],password=memberData[1],firstname=memberData[2],lastname=memberData[3],tags=tags)
-        wall = Wall(member,Storage.getProjects(username))
-        member.wall = wall
+        member.wall = Storage.getWall(member)
         return member
 
     @staticmethod
-    def getProjects(username):
-        DatabaseManager.execute("SELECT * FROM projects WHERE username = '%s'"  %username)
-        rows = DatabaseManager.fetch()
+    def getWall(member):
+        wall = Wall(member,Storage.getProjects(member))
+        for project in wall.projects:
+            project.wall = wall
+        return wall
+
+    @staticmethod
+    def getProjects(member):
+        DatabaseManager.execute("SELECT proj_name FROM projects WHERE username = '%s'"  %member.username)
+        proj_names = DatabaseManager.fetch()
         projects = []
-        for project in rows:
-            DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = %s", [project[0], username])
-            tags = DatabaseManager.fetch()
-            for i in range(len(tags)):
-	            tags[i]=tags[i][0]
-            projects.append(Project(project[0],tags,project[1]))
+        for proj_name in proj_names:
+            p = Storage.getProject(proj_name,member.username)
+            p.comments = Storage.getComments(p,member)
+            projects.append(p)
         return projects
 
     @staticmethod
     def getProject(projectName, username):
-        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s and username = &s", [projectName, username])
+        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s and username = %s", [projectName, username])
         data = DatabaseManager.fetch()
         if len(data) == 0:
             return None
         row = data[0]
-        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = &s", [projectName, username])
+        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = %s", [projectName, username])
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
-        return Project(row[0], row[1], row[2], tags)
+        return Project(row[0], row[1], tags)
+
+    @staticmethod
+    def getComments(project,member):
+        DatabaseManager.execute("SELECT comment,id FROM project_comments WHERE proj_name = %s and username = %s", [project.name, member.username])
+        comments = DatabaseManager.fetch()
+        for i in range(len(comments)):
+            comments[i] = Comment(member, project,comments[i][0],int(comments[i][1]))
+        return comments
 
     @staticmethod
     def updateUserTag(user):
         DatabaseManager.execute("DELETE FROM member_tags WHERE username = %s" ,[user.username])
         for tag in user.tags:
-            DatabaseManager.execute("INSERT INTO member_tags(username,tag) VALUES(%s,%s)" ,[user.username, tag])
+            DatabaseManager.execute("INSERT INTO member_tags(username,tag) VALUES(%s,%s)", [user.username, tag])
+
+    @staticmethod
+    def updateProjectTag(project):
+        DatabaseManager.execute("DELETE FROM project_tags WHERE username = %s AND proj_name = %s",
+                                [project.wall.owner.username, project.name])
+        for tag in project.tags:
+            DatabaseManager.execute("INSERT INTO project_tags(username,proj_name,tag) VALUES(%s,%s,%s)"
+                                    , [project.wall.owner.username, project.name, tag])
 
     @staticmethod
     def addProject(username,name,description):
@@ -92,8 +120,33 @@ class Storage():
                                     , [username, name,tag])
 
     @staticmethod
+    def editProjectDescription(project):
+        DatabaseManager.execute("UPDATE projects SET proj_description = %s WHERE username = %s AND proj_name = %s",
+                                [project.description,project.wall.owner.username, project.name])
+
+    @staticmethod
     def removeProject(username,project):
+        for comment in project.comments:
+            Storage.removeComment(project,comment)
+        for tag in project.tags:
+            Storage.removeProjectTag(project)
         DatabaseManager.execute("DELETE FROM projects WHERE username = %s and proj_name = %s", [username, project.name])
+
+    @staticmethod
+    def addComment(project,comment):
+        DatabaseManager.execute("INSERT INTO project_comments(username,proj_name,comment,id) VALUES(%s,%s,%s,%s)"
+                                , [project.wall.owner.username, project.name, comment.text,comment.id])
+
+    @staticmethod
+    def removeComment(project,comment):
+        id = comment.id
+        DatabaseManager.execute("DELETE FROM project_comments WHERE username = %s and proj_name = %s and id = %s",
+                                 [project.wall.owner.username,project.name,comment.id])
+        for i in range(len(project.comments)-id):
+            DatabaseManager.execute("UPDATE project_comments SET id = "+str(id+i)+
+                                    "WHERE username = %s AND proj_name = %s AND id = "+str(id+i+1)
+                                    ,[project.wall.owner.username, project.name])
+
 #================Methods for SearchBox=====================
 
     @staticmethod

@@ -15,7 +15,7 @@ class ProjectPageTab(QWidget,WallObserver):
         self.system.addObserver(self)
         loader = QUiLoader()
         loader.registerCustomWidget(ClickableLabel)
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
         dialog = loader.load("./UI/projectPageTab.ui")
         self.descriptionBt = dialog.findChild(ClickableLabel,"descriptionLabel")
         self.commentsBt = dialog.findChild(ClickableLabel,"commentsLabel")
@@ -27,9 +27,10 @@ class ProjectPageTab(QWidget,WallObserver):
         self.connect(self.sourcecodeBt,SIGNAL("clicked()"),self.content.openSourcecodeTab)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
-        self.setLayout(layout)
         self.hide()
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Project:
             self.show()
+        else:
+            self.hide()

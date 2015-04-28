@@ -35,11 +35,14 @@
   <widget class="QScrollArea" name="commentArea">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>40</y>
-     <width>611</width>
-     <height>221</height>
+     <width>591</width>
+     <height>191</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="widgetResizable">
     <bool>true</bool>
@@ -49,11 +52,34 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>609</width>
-      <height>219</height>
+      <width>589</width>
+      <height>189</height>
      </rect>
     </property>
    </widget>
+  </widget>
+  <widget class="QTextEdit" name="commentText">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>235</y>
+     <width>531</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="sendBt">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>234</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Send</string>
+   </property>
   </widget>
  </widget>
  <resources/>

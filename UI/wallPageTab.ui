@@ -19,9 +19,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
-  </property>
   <widget class="QPushButton" name="editTagBt">
    <property name="geometry">
     <rect>
@@ -55,6 +52,16 @@
    </property>
    <property name="text">
     <string>Tags: </string>
+   </property>
+  </widget>
+  <widget class="QListView" name="tagList">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>151</width>
+     <height>192</height>
+    </rect>
    </property>
   </widget>
  </widget>
