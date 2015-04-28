@@ -4,14 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/MainApplication.py" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df98865c-15e2-46df-8fbf-1cb871e12d52" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Wall\SearchBoxModel.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Member.py" afterPath="$PROJECT_DIR$/Member.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Page.py" afterPath="$PROJECT_DIR$/Page.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchBox.py" afterPath="$PROJECT_DIR$/SearchBox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Storage.py" afterPath="$PROJECT_DIR$/Storage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="df98865c-15e2-46df-8fbf-1cb871e12d52" name="Default" comment="" />
     <ignored path="Wall.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -662,27 +655,33 @@
       <option name="project" value="LOCAL" />
       <updated>1430199816978</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Revert &quot;- Fixed SearchBox&quot;&#10;&#10;This reverts commit 6d25bf8594b25df40c9b98c1e738d12609f6671a.&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;SearchBar.py&#10;">
+      <created>1430214827362</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1430214827362</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="726" extended-state="0" />
+    <frame x="1" y="1" width="1364" height="726" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25296736" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33711508" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25296736" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38740158" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -718,7 +717,8 @@
     <MESSAGE value="- Registration Page fixed" />
     <MESSAGE value="- Registration Page&#10;- Search Box" />
     <MESSAGE value="- Storage fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Storage fixed" />
+    <MESSAGE value="Revert &quot;- Fixed SearchBox&quot;&#10;&#10;This reverts commit 6d25bf8594b25df40c9b98c1e738d12609f6671a.&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;SearchBar.py&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;- Fixed SearchBox&quot;&#10;&#10;This reverts commit 6d25bf8594b25df40c9b98c1e738d12609f6671a.&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;SearchBar.py&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
