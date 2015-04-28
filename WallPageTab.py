@@ -33,7 +33,7 @@ class WallPageTab(QWidget,WallObserver):
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Wall:
-            if history[-1].owner != user:
+            if history[-1].owner.username != user.username:
                 self.editTagBt.hide()
             else:
                 self.editTagBt.show()
