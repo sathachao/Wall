@@ -23,4 +23,10 @@ class SearchBar(QWidget):
         self.nameLabel = self.ui.findChild(QLabel, "nameLabel")
         self.searchBox = self.ui.findChild(SearchBox, "searchBox")
 
+        self.connect(self.searchBtt, SIGNAL("clicked()"), self.getSearchResult)
+
         self.ui.show()
+
+    def getSearchResult(self):
+        x = self.searchBox.getItem()
+        return self.searchBox.getItem()

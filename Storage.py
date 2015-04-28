@@ -3,6 +3,7 @@ import psycopg2
 from Member import *
 from Project import *
 from DatabaseManager import *
+from Wall import *
 
 class Storage():
 

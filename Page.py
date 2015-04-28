@@ -11,7 +11,7 @@ import UI.wallPageHeaderRsc_rc
 
 
 class Page():
-    def __init__(self,sys):
+    def __init__(self, sys):
         self.system = sys
         loader = QUiLoader()
         self.dialog = loader.load("./UI/page.ui", None)
