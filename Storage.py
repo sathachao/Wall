@@ -158,7 +158,7 @@ class Storage():
     @staticmethod
     def findMemberWithTag(tag):
         DatabaseManager.execute("SELECT username FROM members WHERE username in" +
-                                "(SELECT username FROM member_tags WHERE tag = %s)", [tag + '%'])
+                                "(SELECT username FROM member_tags WHERE tag = %s)", [tag])
         members = list()
         for username in DatabaseManager.fetch():
             members.append(Storage.getUser(username))

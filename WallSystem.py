@@ -59,14 +59,13 @@ class WallSystem:
     def fitText(self,label,width,height):
         textWidth = label.fontMetrics().boundingRect(label.text()).width()
         textHeight = label.fontMetrics().boundingRect(label.text()).height()
-        label.resize(min(textWidth,width),min((textHeight,height)))
+        label.resize(min(textWidth,width), min((textHeight,height)))
 
     def editProjectDescription(self,description):
         self.history[-1].description = description
         Storage.editProjectDescription(self.history[-1])
         self.notifyObservers()
 
-    def goTo(self,first,last):
-        user = Storage.getUserByName(first,last)
-        self.history.append(user.wall)
+    def goTo(self, item):
+        self.history.append(item.wall)
         self.notifyObservers()

@@ -26,17 +26,16 @@ class SearchBar(QWidget):
         self.searchBox = self.ui.findChild(SearchBox, "searchBox")
         layout = QVBoxLayout(self)
         layout.addWidget(self.ui)
-        layout.setContentsMargins(0,0,0,0)
+        layout.setContentsMargins(0, 0, 0, 0)
 
-        self.connect(self.backBtt,SIGNAL("clicked()"),self.back)
-        self.connect(self.searchBtt,SIGNAL("clicked()"),self.goTo)
+        self.connect(self.backBtt, SIGNAL("clicked()"),self.back)
+        self.connect(self.searchBtt, SIGNAL("clicked()"),self.getItem)
 
     def back(self):
-        if len(self.system.history)>1:
+        if len(self.system.history) > 1:
             self.system.history.pop()
             self.system.notifyObservers()
 
-    def goTo(self):
-
-        name = self.searchBox.currentText().split()
-        self.system.goTo(name[0],name[1])
+    def getItem(self):
+        item = self.searchBox.getItem()
+        self.system.goTo(item)

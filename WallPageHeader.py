@@ -6,7 +6,7 @@ from Wall import *
 from Project import *
 
 class WallPageHeader(QWidget,WallObserver):
-    def __init__(self,system):
+    def __init__(self, system):
         QWidget.__init__(self,None)
         self.system = system
         self.system.addObserver(self)
