@@ -11,7 +11,7 @@ import UI.wallPageHeaderRsc_rc
 from SearchBar import *
 
 class Page():
-    def __init__(self,sys):
+    def __init__(self, sys):
         self.system = sys
         loader = QUiLoader()
         self.dialog = loader.load("./UI/page.ui", None)
