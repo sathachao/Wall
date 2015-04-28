@@ -4,37 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/MainApplication.py" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df98865c-15e2-46df-8fbf-1cb871e12d52" name="Default" comment="- Storage fixed">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Database/Database tables.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/page.ui" afterPath="$PROJECT_DIR$/UI/page.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/projectComments.ui" afterPath="$PROJECT_DIR$/UI/projectComments.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/projectDescription.ui" afterPath="$PROJECT_DIR$/UI/projectDescription.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/projectPageHeader.ui" afterPath="$PROJECT_DIR$/UI/projectPageHeader.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/projectPhotos.ui" afterPath="$PROJECT_DIR$/UI/projectPhotos.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/projectSourcecode.ui" afterPath="$PROJECT_DIR$/UI/projectSourcecode.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/projectThumbnail.ui" afterPath="$PROJECT_DIR$/UI/projectThumbnail.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/wallPageHeader.ui" afterPath="$PROJECT_DIR$/UI/wallPageHeader.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/wallPageTab.ui" afterPath="$PROJECT_DIR$/UI/wallPageTab.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ClickableLabel.py" afterPath="$PROJECT_DIR$/ClickableLabel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Comment.py" afterPath="$PROJECT_DIR$/Comment.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CommentWidget.py" afterPath="$PROJECT_DIR$/CommentWidget.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Page.py" afterPath="$PROJECT_DIR$/Page.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project.py" afterPath="$PROJECT_DIR$/Project.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectCreateWidget.py" afterPath="$PROJECT_DIR$/ProjectCreateWidget.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectPageContent.py" afterPath="$PROJECT_DIR$/ProjectPageContent.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectPageHeader.py" afterPath="$PROJECT_DIR$/ProjectPageHeader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectPageTab.py" afterPath="$PROJECT_DIR$/ProjectPageTab.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectThumbnail.py" afterPath="$PROJECT_DIR$/ProjectThumbnail.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SearchBar.py" afterPath="$PROJECT_DIR$/SearchBar.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Storage.py" afterPath="$PROJECT_DIR$/Storage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TagEditWidget.py" afterPath="$PROJECT_DIR$/TagEditWidget.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Wall.iml" afterPath="$PROJECT_DIR$/.idea/Wall.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wall.py" afterPath="$PROJECT_DIR$/Wall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WallPageContent.py" afterPath="$PROJECT_DIR$/WallPageContent.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WallPageHeader.py" afterPath="$PROJECT_DIR$/WallPageHeader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WallPageTab.py" afterPath="$PROJECT_DIR$/WallPageTab.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WallSystem.py" afterPath="$PROJECT_DIR$/WallSystem.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="df98865c-15e2-46df-8fbf-1cb871e12d52" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseManager.py" afterPath="$PROJECT_DIR$/DatabaseManager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Wall.iws" />
@@ -59,16 +30,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProjectPageTab.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProjectPageTab.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="595">
-              <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ProjectPageContent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProjectPageContent.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,11 +50,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WallSystem.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WallSystem.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WallSystem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7018122" vertical-offset="186" max-vertical-offset="1258">
+            <state vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="1258">
               <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseManager.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DatabaseManager.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.19604613" vertical-offset="0" max-vertical-offset="607">
+              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -190,7 +161,6 @@
         <option value="$PROJECT_DIR$/ProjectModel.py" />
         <option value="$PROJECT_DIR$/ProjectDataManager.py" />
         <option value="$PROJECT_DIR$/MemberDataManager.py" />
-        <option value="$PROJECT_DIR$/DatabaseManager.py" />
         <option value="$PROJECT_DIR$/TestModule.py" />
         <option value="$PROJECT_DIR$/UI/searchBarRsc_rc.py" />
         <option value="$PROJECT_DIR$/LoginPage.py" />
@@ -216,6 +186,7 @@
         <option value="$PROJECT_DIR$/ProjectPageContent.py" />
         <option value="$PROJECT_DIR$/Wall.py" />
         <option value="$PROJECT_DIR$/WallSystem.py" />
+        <option value="$PROJECT_DIR$/DatabaseManager.py" />
       </list>
     </option>
   </component>
@@ -695,16 +666,23 @@
       <option name="project" value="LOCAL" />
       <updated>1429687102045</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="- Storage fixed">
+      <created>1430199816978</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1430199816978</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -871,6 +849,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#51#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -910,6 +891,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="595">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -943,6 +925,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="561">
           <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -962,6 +945,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -969,6 +953,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -976,13 +961,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="476">
           <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="595">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,6 +1005,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="1105">
           <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,6 +1020,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="25" max-vertical-offset="561">
           <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,6 +1049,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1075,6 +1057,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1241">
           <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="e#21#51#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1171,8 +1156,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WallSystem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7018122" vertical-offset="186" max-vertical-offset="1258">
+        <state vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="1258">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19604613" vertical-offset="0" max-vertical-offset="607">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
           <folding />
         </state>
       </provider>
