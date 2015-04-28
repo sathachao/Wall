@@ -6,6 +6,8 @@ from PySide.QtCore import *
 from ProjectCreateWidget import *
 from Project import *
 from Wall import *
+from TagEditWidget import *
+
 
 class WallPageTab(QWidget,WallObserver):
     def __init__(self,system):
@@ -13,21 +15,31 @@ class WallPageTab(QWidget,WallObserver):
         self.system = system
         self.system.addObserver(self)
         loader = QUiLoader()
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
         dialog = loader.load("./UI/wallPageTab.ui")
         self.editTagBt = dialog.findChild(QPushButton,"editTagBt")
-        self.connect(self.editTagBt,SIGNAL("clicked()"),self.openProjectCreate)
+        self.tagList = dialog.findChild(QListView,"tagList")
+        self.model = QStandardItemModel(self.tagList)
+        self.tagList.setModel(self.model)
+        self.connect(self.editTagBt,SIGNAL("clicked()"),self.openTagEdit)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
-        self.setLayout(layout)
         self.hide()
 
-    def openProjectCreate(self):
-        self.projectCreteWidget = ProjectCreateWidget(self.system)
-        self.projectCreteWidget.show()
+    def openTagEdit(self):
+        self.tagEditWidget = TagEditWidget(self.system)
+        self.tagEditWidget.show()
+        self.system.notifyObservers()
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Wall:
+            if history[-1].owner != user:
+                self.editTagBt.hide()
+            else:
+                self.editTagBt.show()
+            self.model.clear()
+            for tag in history[-1].owner.tags:
+                self.model.appendRow(QStandardItem(tag))
             self.show()
         else:
             self.hide()

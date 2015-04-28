@@ -14,13 +14,15 @@ class ProjectPageHeader(QWidget,WallObserver):
         loader = QUiLoader()
         dialog = loader.load("./UI/projectPageHeader.ui")
         self.nameText = dialog.findChild(QLabel,"name")
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
-        self.setLayout(layout)
         self.hide()
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Project:
             self.nameText.setText(history[-1].name)
+            self.system.fitText(self.nameText,430,40)
             self.show()
+        else:
+            self.hide()

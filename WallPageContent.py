@@ -15,7 +15,7 @@ class WallPageContent(QWidget,WallObserver):
         self.system = system
         self.system.addObserver(self)
         loader = QUiLoader()
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
         dialog = loader.load("./UI/wallPageContent.ui")
         self.addBt = dialog.findChild(QPushButton,"addBt")
         self.thumbnailArea = dialog.findChild(QScrollArea,"thumbnailArea")
@@ -27,7 +27,6 @@ class WallPageContent(QWidget,WallObserver):
         self.connect(self.addBt,SIGNAL("clicked()"),self.addProject)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
-        self.setLayout(layout)
         self.hide()
 
 
@@ -37,6 +36,10 @@ class WallPageContent(QWidget,WallObserver):
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Wall:
+            if history[-1].owner != user:
+                self.addBt.hide()
+            else:
+                self.addBt.show()
             while self.thumbnailLayout.count()!= 0:
                 widget = self.thumbnailLayout.takeAt(0).widget()
                 self.thumbnailLayout.removeWidget(widget)

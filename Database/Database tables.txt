@@ -1,0 +1,97 @@
+-- Table: member_tags
+
+-- DROP TABLE member_tags;
+
+CREATE TABLE member_tags
+(
+  username text NOT NULL,
+  tag text NOT NULL,
+  CONSTRAINT member_tags_pkey PRIMARY KEY (username, tag),
+  CONSTRAINT username_fkey FOREIGN KEY (username)
+      REFERENCES members (username) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE member_tags
+  OWNER TO postgres;
+
+-- Table: members
+
+-- DROP TABLE members;
+
+CREATE TABLE members
+(
+  username text NOT NULL,
+  password text NOT NULL,
+  firstname text NOT NULL,
+  lastname text NOT NULL,
+  CONSTRAINT members_pkey PRIMARY KEY (username)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE members
+  OWNER TO postgres;
+
+-- Table: project_comments
+
+-- DROP TABLE project_comments;
+
+CREATE TABLE project_comments
+(
+  proj_name text NOT NULL,
+  username text NOT NULL,
+  comment text NOT NULL,
+  id integer NOT NULL,
+  CONSTRAINT project_comments_pkey PRIMARY KEY (proj_name, username, id),
+  CONSTRAINT project_comments_fkey FOREIGN KEY (username, proj_name)
+      REFERENCES projects (username, proj_name) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE project_comments
+  OWNER TO postgres;
+
+-- Table: project_tags
+
+-- DROP TABLE project_tags;
+
+CREATE TABLE project_tags
+(
+  proj_name text NOT NULL,
+  tag text NOT NULL,
+  username text NOT NULL,
+  CONSTRAINT project_tags_pkey PRIMARY KEY (proj_name, tag, username),
+  CONSTRAINT project_tags_fkey FOREIGN KEY (proj_name, username)
+      REFERENCES projects (proj_name, username) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE project_tags
+  OWNER TO postgres;
+
+-- Table: projects
+
+-- DROP TABLE projects;
+
+CREATE TABLE projects
+(
+  proj_name text NOT NULL,
+  proj_description text,
+  username text NOT NULL,
+  CONSTRAINT projects_pkey PRIMARY KEY (proj_name, username),
+  CONSTRAINT projects_fkey FOREIGN KEY (username)
+      REFERENCES members (username) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE projects
+  OWNER TO postgres;
