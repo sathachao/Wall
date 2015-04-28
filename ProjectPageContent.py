@@ -81,10 +81,11 @@ class ProjectDescriptionTab(QWidget,WallObserver):
     def editTag(self):
         self.tagEdit = TagEditWidget(self.system)
         self.tagEdit.show()
+        self.system.notifyObservers()
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Project:
-            if history[-1].wall.owner.username != user.username:
+            if history[-1].owner.username != user.username:
                 self.descriptionEditBt.hide()
                 self.tagEditBt.hide()
             else:
@@ -162,5 +163,5 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Project:
-            if history[-1].wall.owner.username != user.username:
+            if history[-1].owner.username != user.username:
                 self.addBt.hide()

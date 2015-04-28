@@ -4,7 +4,7 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 from Wall import *
 from WallObserver import *
-
+from Member import *
 
 class TagEditWidget(QDialog,WallObserver):
     def __init__(self,system):
@@ -57,8 +57,8 @@ class TagEditWidget(QDialog,WallObserver):
         self.close()
 
     def updateObserver(self,user,history):
-        if type(history[-1])==Wall:
-            tags =  history[-1].owner.tags
+        if type(history[-1])==Member:
+            tags =  history[-1].tags
         else:
             tags = history[-1].tags
         for tag in tags:

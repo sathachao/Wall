@@ -3,7 +3,7 @@ __author__ = 'Faaiz'
 from PySide.QtGui import *
 
 class Project(QStandardItem):
-    def __init__(self,name,description="",tags=[],sourcecode="",photo=[]):
+    def __init__(self,owner,name,description="",tags=[],sourcecode="",photo=[]):
         QStandardItem.__init__(self, name)
         self.wall = None
         self.tags = tags
@@ -12,6 +12,7 @@ class Project(QStandardItem):
         self.sourcecode = sourcecode
         self.photo = photo
         self.comments = []
+        self.owner = owner
 
     def addComment(self,comment):
         self.comments.append(comment)

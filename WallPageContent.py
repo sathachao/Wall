@@ -35,8 +35,8 @@ class WallPageContent(QWidget,WallObserver):
         self.dialog.show()
 
     def updateObserver(self,user,history):
-        if type(history[-1]) == Wall:
-            if history[-1].owner.username != user.username:
+        if type(history[-1]) == Member:
+            if history[-1].username != user.username:
                 self.addBt.hide()
             else:
                 self.addBt.show()

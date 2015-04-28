@@ -5,8 +5,7 @@ import psycopg2
 class DatabaseManager:
     try:
         username = "postgres"
-        password = ""
-
+        password = "pP3819269"
         db = psycopg2.connect(database="Wall", user=username, password=password)
         db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
         cur = db.cursor()

@@ -2,8 +2,9 @@ __author__ = 'Faaiz'
 from PySide.QtUiTools import *
 from PySide.QtGui import *
 from WallObserver import *
-from Wall import *
 from Project import *
+from Member import *
+
 
 class WallPageHeader(QWidget,WallObserver):
     def __init__(self, system):
@@ -19,8 +20,8 @@ class WallPageHeader(QWidget,WallObserver):
         self.hide()
 
     def updateObserver(self,user,history):
-        if type(history[-1]) == Wall:
-            self.nameText.setText(history[-1].owner.firstname+" "+history[-1].owner.lastname)
+        if type(history[-1]) == Member:
+            self.nameText.setText(history[-1].firstname+" "+history[-1].lastname)
             self.system.fitText(self.nameText,430,40)
             self.show()
         else:

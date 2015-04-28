@@ -7,7 +7,7 @@ from Comment import *
 class WallSystem:
     def __init__(self, user):
         self.user = user
-        self.history = [user.wall]
+        self.history = [user]
         self.observers = []
         self.page = Page(self)
         self.notifyObservers()
@@ -22,7 +22,7 @@ class WallSystem:
     def addProject(self,name,tags,description):
         Storage.addProject(self.user.username,name,description)
         Storage.addProjectTags(self.user.username,name,tags)
-        self.user.wall.addProject(Project(name,description,tags))
+        self.user.addProject(Project(name,description,tags))
         self.notifyObservers()
 
     def removeProject(self,project):
@@ -30,7 +30,7 @@ class WallSystem:
             self.removeComment(comment)
         self.editProjectTags(project,[])
         Storage.removeProject(self.user.username,project)
-        self.user.wall.removeProject(project)
+        self.user.removeProject(project)
         self.notifyObservers()
 
     def addComment(self,text):
@@ -67,5 +67,5 @@ class WallSystem:
         self.notifyObservers()
 
     def goTo(self, item):
-        self.history.append(item.wall)
+        self.history.append(item)
         self.notifyObservers()

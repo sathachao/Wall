@@ -10,7 +10,7 @@ class Member(QStandardItem):
         self.username = username
         self.password = password
         self.tags = tags
-        self.wall = None
+        self.projects = []
 
     def getInfo(self):
         return [self.firstname, self.lastname, self.username, self.password, self.tags]
@@ -20,3 +20,10 @@ class Member(QStandardItem):
 
     def text(self):
         return self.firstname + " " + self.lastname
+
+    def addProject(self,p):
+        self.projects.append(p)
+        p.member = self
+
+    def removeProject(self,p):
+        self.projects.remove(p)
