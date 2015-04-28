@@ -35,17 +35,20 @@ class WallPageContent(QWidget,WallObserver):
         self.dialog.show()
 
     def updateObserver(self,user,history):
-        if type(history[-1]) == Wall:
-            if history[-1].owner != user:
-                self.addBt.hide()
+        try:
+            if type(history[-1]) == Wall:
+                if history[-1].owner != user:
+                    self.addBt.hide()
+                else:
+                    self.addBt.show()
+                while self.thumbnailLayout.count()!= 0:
+                    widget = self.thumbnailLayout.takeAt(0).widget()
+                    self.thumbnailLayout.removeWidget(widget)
+                    widget.setParent(None)
+                for project in history[-1].projects:
+                    self.thumbnailLayout.addWidget(ProjectThumbnail(project,self.system))
+                self.show()
             else:
-                self.addBt.show()
-            while self.thumbnailLayout.count()!= 0:
-                widget = self.thumbnailLayout.takeAt(0).widget()
-                self.thumbnailLayout.removeWidget(widget)
-                widget.setParent(None)
-            for project in history[-1].projects:
-                self.thumbnailLayout.addWidget(ProjectThumbnail(project,self.system))
-            self.show()
-        else:
-            self.hide()
+                self.hide()
+        except:
+            pass

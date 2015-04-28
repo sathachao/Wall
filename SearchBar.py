@@ -37,5 +37,6 @@ class SearchBar(QWidget):
             self.system.notifyObservers()
 
     def goTo(self):
+
         name = self.searchBox.currentText().split()
         self.system.goTo(name[0],name[1])

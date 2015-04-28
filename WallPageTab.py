@@ -32,14 +32,17 @@ class WallPageTab(QWidget,WallObserver):
         self.system.notifyObservers()
 
     def updateObserver(self,user,history):
-        if type(history[-1]) == Wall:
-            if history[-1].owner != user:
-                self.editTagBt.hide()
+        try:
+            if type(history[-1]) == Wall:
+                if history[-1].owner != user:
+                    self.editTagBt.hide()
+                else:
+                    self.editTagBt.show()
+                self.model.clear()
+                for tag in history[-1].owner.tags:
+                    self.model.appendRow(QStandardItem(tag))
+                self.show()
             else:
-                self.editTagBt.show()
-            self.model.clear()
-            for tag in history[-1].owner.tags:
-                self.model.appendRow(QStandardItem(tag))
-            self.show()
-        else:
-            self.hide()
+                self.hide()
+        except:
+            pass
