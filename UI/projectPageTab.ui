@@ -48,7 +48,7 @@ font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/sourcecode_button.png</pixmap>
+    <pixmap resource="projectPageTabRsc.qrc">:/png files/sourcecode_button.png</pixmap>
    </property>
   </widget>
   <widget class="ClickableLabel" name="descriptionLabel">
@@ -68,7 +68,7 @@ font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/descriptionButton.png</pixmap>
+    <pixmap resource="projectPageTabRsc.qrc">:/png files/descriptionButton.png</pixmap>
    </property>
   </widget>
   <widget class="ClickableLabel" name="photosLabel">
@@ -88,7 +88,7 @@ font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/photos_button.png</pixmap>
+    <pixmap resource="projectPageTabRsc.qrc">:/png files/photos_button.png</pixmap>
    </property>
   </widget>
   <widget class="ClickableLabel" name="commentsLabel">
@@ -108,7 +108,7 @@ font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>C:/Users/sagit_000.DAWUD/PycharmProjects/Wall/comments_button.png</pixmap>
+    <pixmap resource="projectPageTabRsc.qrc">:/png files/comments_button.png</pixmap>
    </property>
   </widget>
  </widget>

@@ -49,7 +49,7 @@ class ProjectPageContent(WallObserver):
             self.currentTab.hide()
             self.currentTab = self.descriptionTab
 
-class ProjectDescriptionTab(QWidget,WallObserver):
+class ProjectDescriptionTab(QWidget, WallObserver):
     def __init__(self,system):
         QWidget.__init__(self,None)
         self.system = system
@@ -84,7 +84,7 @@ class ProjectDescriptionTab(QWidget,WallObserver):
         self.tagEdit.show()
         self.system.notifyObservers()
 
-    def updateObserver(self,user,history):
+    def updateObserver(self, user, history):
         if type(history[-1]) == Project:
             if history[-1].owner.username != user.username:
                 self.descriptionEditBt.hide()
@@ -97,7 +97,7 @@ class ProjectDescriptionTab(QWidget,WallObserver):
                     self.model.appendRow((QStandardItem(tag)))
             self.descriptionText.setPlainText(history[-1].description)
 
-class ProjectCommentTab(QWidget,WallObserver):
+class ProjectCommentTab(QWidget, WallObserver):
     def __init__(self,system):
         QWidget.__init__(self,None)
         self.system = system
@@ -182,12 +182,53 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
         loader = QUiLoader()
         layout = QVBoxLayout(self)
         dialog = loader.load("./UI/projectSourcecode.ui")
-        self.addBt = dialog.findChild(QPushButton,"addBt")
+        self.addBt = dialog.findChild(QPushButton, "addBt")
+        self.sourcecodeTxt = dialog.findChild(QPlainTextEdit, "sourcecodeText")
+        self.fileList = dialog.findChild(QListView, "fileList")
+
+        self.model = QStandardItemModel(self)
+        self.fileList.setModel(self.model)
+
+        self.connect(self.addBt, SIGNAL("clicked()"), self.addFile)
+        self.connect(self.fileList.selectionModel(), SIGNAL("currentRowChanged(QModelIndex,QModelIndex)"), self.showSourceCode)
+
         layout.addWidget(dialog)
-        layout.setContentsMargins(0,0,0,0)
+        layout.setContentsMargins(0, 0, 0, 0)
         self.hide()
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Project:
             if history[-1].owner.username != user.username:
                 self.addBt.hide()
+
+    def addFile(self):
+        dialog = QFileDialog(self)
+        dialog.setFileMode(QFileDialog.ExistingFiles)
+        dialog.setNameFilter("Python Files (*.py *.pyw)")
+
+        if dialog.exec_():
+            filenames = dialog.selectedFiles()
+
+        files = list()
+        for filename in filenames:
+            self.model.appendRow(ProjectSourcecodeTab.File(filename))
+        print("open file successfully")
+        return files
+
+    def showSourceCode(self, current, previous):
+        item = self.model.itemFromIndex(current)
+        item.open()
+        self.sourcecodeTxt.setPlainText(item.file.read())
+        item.close()
+
+    class File(QStandardItem):
+        def __init__(self, filename):
+            QStandardItem.__init__(self, filename)
+            self.filename = filename
+            self.file = None
+
+        def open(self):
+            self.file = open(self.filename)
+
+        def close(self):
+            self.file.close()

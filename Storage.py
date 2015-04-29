@@ -148,7 +148,7 @@ class Storage():
 
     @staticmethod
     def findUser(keyword):
-        DatabaseManager.execute("SELECT username FROM members WHERE firstname like %s", [keyword+'%'])
+        DatabaseManager.execute("SELECT username FROM members WHERE lower(firstname) like concat(lower(%s),%s)", [keyword, '%'])
         members = list()
         data = DatabaseManager.fetch()
         if len(data) == 0:
@@ -160,7 +160,7 @@ class Storage():
     @staticmethod
     def findMemberWithTag(tag):
         DatabaseManager.execute("SELECT username FROM members WHERE username in" +
-                                "(SELECT username FROM member_tags WHERE tag = %s)", [tag])
+                                "(SELECT username FROM member_tags WHERE lower(tag) = lower(%s))", [tag])
         members = list()
         for username in DatabaseManager.fetch():
             members.append(Storage.getUser(username))
@@ -168,19 +168,21 @@ class Storage():
 
     @staticmethod
     def findProject(keyword):
-        DatabaseManager.execute("SELECT proj_name, username FROM projects WHERE proj_name like %s", [keyword + '%'])
+        DatabaseManager.execute("SELECT proj_name, username FROM projects WHERE lower(proj_name) like concat(lower(%s),%s)", [keyword, '%'])
         projects = list()
         for proj_name, username in DatabaseManager.fetch():
-            projects.append(Storage.getProject(proj_name, username))
+            member = Storage.getUser(username)
+            projects.append(Storage.getProject(proj_name, member))
         return projects
 
     @staticmethod
     def findProjectWithTag(tag):
         DatabaseManager.execute("SELECT * FROM projects WHERE proj_name in" +
-                                "(SELECT proj_name FROM project_tags WHERE tag = %s)", [tag])
+                                "(SELECT proj_name FROM project_tags WHERE lower(tag) = lower(%s))", [tag])
         projects = list()
         for project in DatabaseManager.fetch():
-            projects.append(Storage.getProject(project[0], project[2]))
+            member = Storage.getUser(project[2])
+            projects.append(Storage.getProject(project[0], member))
         return projects
 
     @staticmethod
@@ -192,3 +194,4 @@ class Storage():
             items.append(member)
         for project in projects:
             items.append(project)
+        return items
