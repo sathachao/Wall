@@ -95,3 +95,48 @@ WITH (
 );
 ALTER TABLE projects
   OWNER TO postgres;
+
+-- Table: project_sourcecode
+
+-- DROP TABLE project_sourcecode;
+
+CREATE TABLE project_sourcecode
+(
+  filename text NOT NULL,
+  sourcecode text NOT NULL,
+  username text NOT NULL,
+  proj_name text NOT NULL,
+  CONSTRAINT project_sourcecode_pkey PRIMARY KEY (username, proj_name, filename),
+  CONSTRAINT project_sourcecode_fkey FOREIGN KEY (proj_name, username)
+      REFERENCES projects (proj_name, username) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE project_sourcecode
+  OWNER TO postgres;
+
+
+-- Table: project_photos
+
+-- DROP TABLE project_photos;
+
+CREATE TABLE project_photos
+(
+  photo bytea NOT NULL,
+  username text NOT NULL,
+  proj_name text NOT NULL,
+  id integer NOT NULL,
+  CONSTRAINT project_photos_pkey PRIMARY KEY (username, proj_name, id),
+  CONSTRAINT project_photos_fkey FOREIGN KEY (username, proj_name)
+      REFERENCES projects (username, proj_name) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE project_photos
+  OWNER TO postgres;
+
+
