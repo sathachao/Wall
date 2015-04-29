@@ -27,3 +27,7 @@ class DatabaseManager:
     @staticmethod
     def fetch():
         return DatabaseManager.cur.fetchall()
+
+    @staticmethod
+    def insertEscapeToBinary(binary):
+        return psycopg2.Binary(binary)

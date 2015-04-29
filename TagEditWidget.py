@@ -2,7 +2,6 @@ __author__ = 'Faaiz'
 from PySide.QtUiTools import *
 from PySide.QtGui import *
 from PySide.QtCore import *
-from Wall import *
 from WallObserver import *
 from Member import *
 
@@ -34,14 +33,15 @@ class TagEditWidget(QDialog,WallObserver):
         tags = []
         for row in range(self.model.rowCount()):
             tags.append(self.model.item(row).text())
-        if type(self.system.history[-1]) == Wall:
+        if type(self.system.history[-1]) == Member:
             self.system.editUserTags(tags)
         else:
             self.system.editProjectTags(self.system.history[-1],tags)
         self.close()
 
     def remove(self):
-        self.model.takeRow(self.list.selectedIndexes()[0].row())
+        if len(self.list.selectedIndexes())>0:
+          self.model.takeRow(self.list.selectedIndexes()[0].row())
 
     def add(self):
         if self.tagLine.text() =="":

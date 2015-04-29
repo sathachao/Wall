@@ -69,3 +69,17 @@ class WallSystem:
     def goTo(self, item):
         self.history.append(item)
         self.notifyObservers()
+
+    def addProjectPhoto(self,filename):
+        file = open(filename,'rb')
+        binary = file.read()
+        self.history[-1].addPhoto(binary)
+        id = len(self.history[-1].photos)
+        Storage.addProjectPhoto(self.history[-1],binary,id)
+        self.notifyObservers()
+
+    def removeProjectPhoto(self,photo):
+        self.history[-1].removePhoto(photo)
+        Storage.removeProjectPhoto(self.history[-1],)
+        self.notifyObservers()
+        print('remove!')

@@ -4,7 +4,6 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 from ProjectCreateWidget import *
 from WallObserver import *
-from Wall import *
 from Member import *
 from ProjectThumbnail import *
 

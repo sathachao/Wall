@@ -22,4 +22,3 @@ class CommentWidget(QWidget):
 
     def remove(self):
         self.system.removeComment(self.comment.project,self.comment)
-        self.system.notifyObservers()

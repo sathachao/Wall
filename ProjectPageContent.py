@@ -4,12 +4,13 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 from ProjectCreateWidget import *
 from WallObserver import *
-from Wall import *
 from Member import *
 from ProjectThumbnail import *
 from Project import *
 from CommentWidget import *
 from TagEditWidget import *
+from PhotoWidget import *
+
 
 class ProjectPageContent(WallObserver):
     def __init__(self,system):
@@ -102,17 +103,15 @@ class ProjectCommentTab(QWidget,WallObserver):
         self.system = system
         self.system.addObserver(self)
         loader = QUiLoader()
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
         dialog = loader.load("./UI/projectComments.ui")
         self.commentArea = dialog.findChild(QScrollArea,"commentArea")
         self.sendBt = dialog.findChild(QPushButton,"sendBt")
         self.commentText = dialog.findChild(QTextEdit,"commentText")
         self.commentArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        widget = QWidget()
-        widget.setContentsMargins(0,0,0,0)
-        self.commentLayout = QVBoxLayout(widget)
+        self.commentArea.setContentsMargins(0,0,0,0)
+        self.commentLayout = QGridLayout(self.commentArea)
         self.commentLayout.setContentsMargins(0,0,0,0)
-        self.commentArea.setWidget(widget)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
 
@@ -131,22 +130,49 @@ class ProjectCommentTab(QWidget,WallObserver):
                 widget = self.commentLayout.takeAt(0).widget()
                 self.commentLayout.removeWidget(widget)
                 widget.setParent(None)
-            for comment in history[-1].comments:
-                self.commentLayout.addWidget(CommentWidget(comment,self.system),Qt.AlignTop)
+            for i in range (len(history[-1].comments)):
+                self.commentLayout.addWidget(CommentWidget(history[-1].comments[i],self.system),i,0)
         else:
             self.hide()
 
-class ProjectPhotoTab(QWidget):
+class ProjectPhotoTab(QWidget,WallObserver):
     def __init__(self,system):
         QWidget.__init__(self,None)
         self.system = system
+        self.system.addObserver(self)
         loader = QUiLoader()
         layout = QVBoxLayout(self)
         dialog = loader.load("./UI/projectPhotos.ui")
+        self.addBt = dialog.findChild(QPushButton,"addBt")
+        self.photoArea = dialog.findChild(QScrollArea,"photoArea")
+        self.photoArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        widget = QWidget()
+        self.photoLayout = QGridLayout(widget)
+        self.photoLayout.setContentsMargins(0,0,0,0)
+        self.photoArea.setWidget(widget)
+        self.connect(self.addBt,SIGNAL("clicked()"),self.browsePhoto)
+
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
         self.hide()
 
+    def browsePhoto(self):
+        fname, _ = QFileDialog.getOpenFileName(self, 'Open file','./UI')
+        self.system.addProjectPhoto(fname)
+
+    def updateObserver(self,user,history):
+        if type(history[-1]) == Project:
+            if history[-1].owner.username != user.username:
+                self.addBt.hide()
+            else:
+                self.addBt.show()
+            while self.photoLayout.count()!= 0:
+                widget = self.photoLayout.takeAt(0).widget()
+                self.photoLayout.removeWidget(widget)
+                widget.setParent(None)
+            for i in range(len(history[-1].photos)):
+                widget = PhotoWidget(self.system,history[-1].photos[i])
+                self.photoLayout.addWidget(widget, i//3, i%3)
 
 class ProjectSourcecodeTab(QWidget,WallObserver):
     def __init__(self,system):

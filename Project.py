@@ -3,14 +3,14 @@ __author__ = 'Faaiz'
 from PySide.QtGui import *
 
 class Project(QStandardItem):
-    def __init__(self,owner,name,description="",tags=[],sourcecode="",photo=[]):
+    def __init__(self,owner,name,description="",tags=[],photos=[],sourcecode=[]):
         QStandardItem.__init__(self, name)
         self.wall = None
         self.tags = tags
         self.description = description
         self.name = name
         self.sourcecode = sourcecode
-        self.photo = photo
+        self.photos = photos
         self.comments = []
         self.owner = owner
 
@@ -23,3 +23,6 @@ class Project(QStandardItem):
         while id!=len(self.comments):
             self.comments[id].id -= 1
             id += 1
+
+    def addPhoto(self,photo):
+        self.photos.append(photo)

@@ -2,7 +2,6 @@ __author__ = 'Faaiz'
 from PySide.QtUiTools import *
 from PySide.QtGui import *
 from WallObserver import *
-from Wall import *
 from Project import *
 
 

@@ -61,16 +61,21 @@ class Storage():
 
     @staticmethod
     def getProject(projectName, member):
-        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s and username = %s", [projectName, member.username])
+        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s AND username = %s", [projectName, member.username])
         data = DatabaseManager.fetch()
         if len(data) == 0:
             return None
         row = data[0]
-        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s and username = %s", [projectName, member.username])
+        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s AND username = %s", [projectName, member.username])
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
-        return Project(member,row[0], row[1], tags)
+        DatabaseManager.execute("SELECT photo FROM project_photos WHERE proj_name = %s AND username = %s",
+                                [projectName, member.username])
+        photos = DatabaseManager.fetch()
+        for i in range(len(photos)):
+            photos[i] = photos[i][0].tobytes()
+        return Project(member,row[0], row[1], tags,photos)
 
     @staticmethod
     def getComments(project,member):
@@ -131,7 +136,13 @@ class Storage():
         for i in range(len(project.comments)-id):
             DatabaseManager.execute("UPDATE project_comments SET id = %s" +
                                     "WHERE username = %s AND proj_name = %s AND id = %s",
-                                    [id + 1, project.owner.username, project.name, id + 1])
+                                    [id + i , project.owner.username, project.name, id + i + 1])
+
+    @staticmethod
+    def addProjectPhoto(project,photo,id):
+        binary = DatabaseManager.insertEscapeToBinary(photo)
+        DatabaseManager.execute("INSERT INTO project_photos(username,proj_name,photo,id) VALUES(%s,%s,%s,%s)",
+                                [project.owner.username, project.name, binary, id])
 
 #================Methods for SearchBox=====================
 

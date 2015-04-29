@@ -3,7 +3,6 @@ from PySide.QtUiTools import *
 from PySide.QtGui import *
 from WallObserver import *
 from Project import *
-from Wall import *
 from UI.ProjectPageTabRsc_rc import *
 from ClickableLabel import *
 
