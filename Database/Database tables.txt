@@ -138,5 +138,3 @@ WITH (
 );
 ALTER TABLE project_photos
   OWNER TO postgres;
-
-

@@ -10,7 +10,7 @@ from WallObserver import *
 
 
 class SearchBar(QWidget):
-    def __init__(self, system,parent=None):
+    def __init__(self, system, parent=None):
         QWidget.__init__(self, parent)
         self.system = system
         #self.system.addObserver(self)
@@ -24,12 +24,16 @@ class SearchBar(QWidget):
         self.settingBtt = self.ui.findChild(ClickableLabel, "settingBtt")
         self.nameLabel = self.ui.findChild(QLabel, "nameLabel")
         self.searchBox = self.ui.findChild(SearchBox, "searchBox")
+
+        self.nameLabel.setText(self.system.user.firstname + " " + self.system.user.lastname)
+
         layout = QVBoxLayout(self)
         layout.addWidget(self.ui)
         layout.setContentsMargins(0, 0, 0, 0)
 
         self.connect(self.backBtt, SIGNAL("clicked()"),self.back)
         self.connect(self.searchBtt, SIGNAL("clicked()"),self.getItem)
+        self.connect(self.homeBtt, SIGNAL("clicked()"), self.home)
 
     def back(self):
         if len(self.system.history) > 1:
@@ -39,3 +43,7 @@ class SearchBar(QWidget):
     def getItem(self):
         item = self.searchBox.getItem()
         self.system.goTo(item)
+
+    def home(self):
+        self.system.goTo(self.system.user)
+

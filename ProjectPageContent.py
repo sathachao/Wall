@@ -10,6 +10,8 @@ from Project import *
 from CommentWidget import *
 from TagEditWidget import *
 from PhotoWidget import *
+from Storage import *
+from SourceFile import *
 
 
 class ProjectPageContent(WallObserver):
@@ -35,6 +37,7 @@ class ProjectPageContent(WallObserver):
     def openSourcecodeTab(self):
         self.currentTab.hide()
         self.currentTab = self.sourcecodeTab
+        self.sourcecodeTab.updateModel()
         self.currentTab.show()
 
     def openPhotoTab(self):
@@ -190,7 +193,10 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
         self.fileList.setModel(self.model)
 
         self.connect(self.addBt, SIGNAL("clicked()"), self.addFile)
-        self.connect(self.fileList.selectionModel(), SIGNAL("currentRowChanged(QModelIndex,QModelIndex)"), self.showSourceCode)
+        self.connect(self.fileList.selectionModel(), SIGNAL("currentRowChanged(QModelIndex,QModelIndex)"),
+            self.showSourceCode)
+
+        self.updateModel()
 
         layout.addWidget(dialog)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -208,27 +214,23 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
 
         if dialog.exec_():
             filenames = dialog.selectedFiles()
+            for filename in filenames:
+                file = open(filename, 'r')
+                name = (filename.split("/"))[-1]
+                content = file.read()
+                Storage.saveSourceFile(self.system.history[-1].owner.username, self.system.history[-1].name,
+                                       name, content)
+            self.updateModel()
 
-        files = list()
-        for filename in filenames:
-            self.model.appendRow(ProjectSourcecodeTab.File(filename))
-        print("open file successfully")
-        return files
+    def updateModel(self):
+        self.model.clear()
+        if type(self.system.history[-1]) == Project:
+            if self.system.history[-1].owner.username:
+                files = Storage.loadSourceFiles(self.system.history[-1].owner.username, self.system.history[-1].name)
+                for file in files:
+                    self.model.appendRow(file)
 
     def showSourceCode(self, current, previous):
         item = self.model.itemFromIndex(current)
-        item.open()
-        self.sourcecodeTxt.setPlainText(item.file.read())
-        item.close()
+        self.sourcecodeTxt.setPlainText(item.content)
 
-    class File(QStandardItem):
-        def __init__(self, filename):
-            QStandardItem.__init__(self, filename)
-            self.filename = filename
-            self.file = None
-
-        def open(self):
-            self.file = open(self.filename)
-
-        def close(self):
-            self.file.close()

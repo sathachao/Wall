@@ -96,7 +96,7 @@
     <pixmap resource="searchBarRsc.qrc">:/png files/settingBtt.png</pixmap>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="nameLabel">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -133,7 +133,7 @@
   <zorder>homeBtt</zorder>
   <zorder>searchBtt</zorder>
   <zorder>settingBtt</zorder>
-  <zorder>label</zorder>
+  <zorder>nameLabel</zorder>
   <zorder>searchBox</zorder>
  </widget>
  <customwidgets>

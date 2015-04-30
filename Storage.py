@@ -4,6 +4,7 @@ from Comment import *
 from Member import *
 from Project import *
 from DatabaseManager import *
+from SourceFile import *
 
 class Storage():
 
@@ -61,12 +62,14 @@ class Storage():
 
     @staticmethod
     def getProject(projectName, member):
-        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s AND username = %s", [projectName, member.username])
+        DatabaseManager.execute("SELECT * FROM projects WHERE proj_name = %s AND username = %s",
+                                [projectName, member.username])
         data = DatabaseManager.fetch()
         if len(data) == 0:
             return None
         row = data[0]
-        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s AND username = %s", [projectName, member.username])
+        DatabaseManager.execute("SELECT tag FROM project_tags WHERE proj_name = %s AND username = %s",
+                                [projectName, member.username])
         tags = DatabaseManager.fetch()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
@@ -79,7 +82,8 @@ class Storage():
 
     @staticmethod
     def getComments(project,member):
-        DatabaseManager.execute("SELECT comment,id FROM project_comments WHERE proj_name = %s and username = %s", [project.name, member.username])
+        DatabaseManager.execute("SELECT comment,id FROM project_comments WHERE proj_name = %s and username = %s",
+                                [project.name, member.username])
         comments = DatabaseManager.fetch()
         for i in range(len(comments)):
             comments[i] = Comment(member, project,comments[i][0],int(comments[i][1]))
@@ -148,7 +152,8 @@ class Storage():
 
     @staticmethod
     def findUser(keyword):
-        DatabaseManager.execute("SELECT username FROM members WHERE lower(firstname) like concat(lower(%s),%s)", [keyword, '%'])
+        DatabaseManager.execute("SELECT username FROM members WHERE lower(firstname) like concat(lower(%s),%s)",
+                                [keyword, '%'])
         members = list()
         data = DatabaseManager.fetch()
         if len(data) == 0:
@@ -168,7 +173,8 @@ class Storage():
 
     @staticmethod
     def findProject(keyword):
-        DatabaseManager.execute("SELECT proj_name, username FROM projects WHERE lower(proj_name) like concat(lower(%s),%s)", [keyword, '%'])
+        DatabaseManager.execute("SELECT proj_name, username FROM projects WHERE lower(proj_name) " +
+                                "like concat(lower(%s),%s)", [keyword, '%'])
         projects = list()
         for proj_name, username in DatabaseManager.fetch():
             member = Storage.getUser(username)
@@ -195,3 +201,22 @@ class Storage():
         for project in projects:
             items.append(project)
         return items
+
+#========================Source code methods========================
+    @staticmethod
+    def saveSourceFile(username, projectName, sourceFileName, sourceCode):
+        try:
+            DatabaseManager.execute("INSERT INTO project_sourcecode(filename, sourcecode, username, proj_name) " +
+                                    "VALUES(%s,%s,%s,%s)", [sourceFileName, sourceCode, username, projectName])
+        except psycopg2.IntegrityError:
+            print(sourceFileName, "already exists")
+
+    @staticmethod
+    def loadSourceFiles(username, projectName):
+        DatabaseManager.execute("SELECT filename, sourcecode FROM project_sourcecode " +
+                                "WHERE username = %s and proj_name = %s", [username, projectName])
+        sourceFiles = list()
+        for filename, sourcecode in DatabaseManager.fetch():
+            sourceFiles.append(SourceFile(filename, sourcecode))
+
+        return sourceFiles

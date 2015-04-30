@@ -15,6 +15,7 @@ class SearchBox(QComboBox):
     def eventFilter(self, widget, event):
         if event.type() == QEvent.KeyPress:
             if event.key() == Qt.Key_Return:
+                self.focusWidget()
                 self.model.update(self.currentText())
                 self.showPopup()
 
