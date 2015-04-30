@@ -3,10 +3,14 @@ from PySide.QtGui import *
 from PySide.QtUiTools import *
 from PySide.QtCore import *
 from ClickableLabel import *
+from WallObserver import *
+from Project import *
 
-class PhotoWidget(QWidget):
+class PhotoWidget(QWidget,WallObserver):
     def __init__(self,system,photo):
         QWidget.__init__(self)
+        self.system = system
+        self.system.addObserver(self)
         loader = QUiLoader()
         loader.registerCustomWidget(ClickableLabel)
         dialog = loader.load("./UI/photoWidget.ui")
@@ -16,7 +20,10 @@ class PhotoWidget(QWidget):
         self.image = QImage.fromData(photo)
         self.picture.setPixmap(QPixmap(self.image.scaled(90,90)))
         self.picture.setContentsMargins(0,0,0,0)
-        self.connect(self.picture,SIGNAL("clicked()"),self.openPhoto)
+
+        self.connect(self.picture, SIGNAL("clicked()"),self.openPhoto)
+        self.connect(self.removeBt,SIGNAL("clicked()"),self.removePhoto)
+
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0,0,0,0)
         layout.addWidget(dialog)
@@ -32,3 +39,9 @@ class PhotoWidget(QWidget):
     def removePhoto(self):
         self.system.removeProjectPhoto(self.photo)
 
+    def updateObserver(self,user,history):
+        if type(history[-1]) == Project:
+            if history[-1].owner.username != user.username:
+                self.removeBt.hide()
+            else:
+                self.removeBt.show()

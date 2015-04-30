@@ -19,6 +19,11 @@ class WallSystem:
         for i in self.observers:
             i.updateObserver(self.user,self.history)
 
+    def openProject(self,project):
+        project.comments = Storage.getComments(project)
+        self.history.append(project)
+        self.notifyObservers()
+
     def addProject(self,name,tags,description):
         Storage.addProject(self.user.username,name,description)
         Storage.addProjectTags(self.user.username,name,tags)
@@ -79,7 +84,7 @@ class WallSystem:
         self.notifyObservers()
 
     def removeProjectPhoto(self,photo):
+        index = self.history[-1].getPhotoIndex(photo)
         self.history[-1].removePhoto(photo)
-        Storage.removeProjectPhoto(self.history[-1],)
+        Storage.removeProjectPhoto(self.history[-1],index)
         self.notifyObservers()
-        print('remove!')

@@ -26,5 +26,4 @@ class ProjectThumbnail(QWidget):
         self.system.removeProject(self.project)
 
     def openProject(self):
-        self.system.history.append(self.project)
-        self.system.notifyObservers()
+        self.system.openProject(self.project)

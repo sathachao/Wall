@@ -56,7 +56,7 @@ class Storage():
         projects = []
         for proj_name in proj_names:
             p = Storage.getProject(proj_name, member)
-            p.comments = Storage.getComments(p, member)
+            p.comments = Storage.getComments(p)
             projects.append(p)
         return projects
 
@@ -81,12 +81,12 @@ class Storage():
         return Project(member,row[0], row[1], tags,photos)
 
     @staticmethod
-    def getComments(project,member):
+    def getComments(project):
         DatabaseManager.execute("SELECT comment,id FROM project_comments WHERE proj_name = %s and username = %s",
-                                [project.name, member.username])
+                                [project.name, project.owner.username])
         comments = DatabaseManager.fetch()
         for i in range(len(comments)):
-            comments[i] = Comment(member, project,comments[i][0],int(comments[i][1]))
+            comments[i] = Comment(project.owner, project,comments[i][0],int(comments[i][1]))
         return comments
 
     @staticmethod

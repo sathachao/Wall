@@ -26,3 +26,13 @@ class Project(QStandardItem):
 
     def addPhoto(self,photo):
         self.photos.append(photo)
+
+    def removePhoto(self,photo):
+        id = self.getPhotoIndex(photo)
+        self.photos.remove(photo)
+        while id!=len(self.photos):
+            self.photoss[id].id -= 1
+            id += 1
+
+    def getPhotoIndex(self,photo):
+        return self.photos.index(photo)
