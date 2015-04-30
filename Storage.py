@@ -220,3 +220,8 @@ class Storage():
             sourceFiles.append(SourceFile(filename, sourcecode))
 
         return sourceFiles
+
+    @staticmethod
+    def deleteSourceFile(username, projectName, sourceFileName):
+        DatabaseManager.execute("DELETE FROM project_sourcecode WHERE username = %s and proj_name = %s " +
+                                "and filename = %s", [username, projectName, sourceFileName])

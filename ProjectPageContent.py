@@ -186,6 +186,7 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
         layout = QVBoxLayout(self)
         dialog = loader.load("./UI/projectSourcecode.ui")
         self.addBt = dialog.findChild(QPushButton, "addBt")
+        self.delBtt = dialog.findChild(QPushButton, "delBtt")
         self.sourcecodeTxt = dialog.findChild(QPlainTextEdit, "sourcecodeText")
         self.fileList = dialog.findChild(QListView, "fileList")
 
@@ -193,6 +194,7 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
         self.fileList.setModel(self.model)
 
         self.connect(self.addBt, SIGNAL("clicked()"), self.addFile)
+        self.connect(self.delBtt, SIGNAL("clicked()"), self.delFile)
         self.connect(self.fileList.selectionModel(), SIGNAL("currentRowChanged(QModelIndex,QModelIndex)"),
             self.showSourceCode)
 
@@ -222,6 +224,12 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
                                        name, content)
             self.updateModel()
 
+    def delFile(self):
+        item = self.model.itemFromIndex(self.fileList.selectionModel().currentIndex())
+        if item is not None:
+            Storage.deleteSourceFile(self.system.user.username, self.system.history[-1].name, item.filename)
+        self.updateModel()
+
     def updateModel(self):
         self.model.clear()
         if type(self.system.history[-1]) == Project:
@@ -231,6 +239,6 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
                     self.model.appendRow(file)
 
     def showSourceCode(self, current, previous):
-        item = self.model.itemFromIndex(current)
-        self.sourcecodeTxt.setPlainText(item.content)
-
+        if self.model.itemFromIndex(current) is not None:
+            item = self.model.itemFromIndex(current)
+            self.sourcecodeTxt.setPlainText(item.content)
