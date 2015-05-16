@@ -27,12 +27,12 @@ class WallSystem:
     def addProject(self,name,tags,description):
         Storage.addProject(self.user.username,name,description)
         Storage.addProjectTags(self.user.username,name,tags)
-        self.user.addProject(Project(name,description,tags))
+        self.user.addProject(Project(self.user,name,description,tags))
         self.notifyObservers()
 
     def removeProject(self,project):
-        for comment in project.comments:
-            self.removeComment(comment)
+        while len(project.comments)!=0:
+            self.removeComment(project,project.comments[0])
         self.editProjectTags(project,[])
         Storage.removeProject(self.user.username,project)
         self.user.removeProject(project)
@@ -41,7 +41,7 @@ class WallSystem:
     def addComment(self,text):
         comment = Comment(self.user,self.history[-1],text,len(self.history[-1].comments))
         self.history[-1].addComment(comment)
-        Storage.addComment(self.history[-1],comment)
+        Storage.addComment(self.history[-1],comment,self.user)
 
     def removeComment(self, project,comment):
         project.removeComment(comment)
@@ -75,11 +75,18 @@ class WallSystem:
         self.history.append(item)
         self.notifyObservers()
 
+    def changeProfilePhoto(self,filename):
+        file = open(filename,'rb')
+        binary = file.read()
+        self.user.changeProfilePhoto(binary)
+        Storage.changeProfilePhoto(self.user.username,binary)
+        self.notifyObservers()
+
     def addProjectPhoto(self,filename):
         file = open(filename,'rb')
         binary = file.read()
-        self.history[-1].addPhoto(binary)
         id = len(self.history[-1].photos)
+        self.history[-1].addPhoto(binary)
         Storage.addProjectPhoto(self.history[-1],binary,id)
         self.notifyObservers()
 

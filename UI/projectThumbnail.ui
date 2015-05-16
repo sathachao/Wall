@@ -102,8 +102,6 @@ font: 75 8pt &quot;MS Shell Dlg 2&quot;;</string>
      <string/>
     </property>
    </widget>
-   <zorder>frame_2</zorder>
-   <zorder>name</zorder>
   </widget>
   <widget class="QFrame" name="frame_2">
    <property name="geometry">

@@ -34,12 +34,14 @@ class ProjectCreateWidget(QDialog):
         self.setModal(True)
 
     def confirm(self):
+        if self.projectNameLine.text() == "":
+            return
         tags = []
         for row in range(self.model.rowCount()):
             tags.append(self.model.item(row).text())
         name = self.projectNameLine.text()
         description = self.descriptionText.toPlainText()
-        if name not in [project.name for project in self.system.user.wall.projects]:
+        if name not in [project.name for project in self.system.user.projects]:
             self.system.addProject(name,tags,description)
             self.close()
 

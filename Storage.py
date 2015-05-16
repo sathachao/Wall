@@ -42,10 +42,16 @@ class Storage():
         memberData = DatabaseManager.fetch()[0]
         DatabaseManager.execute("SELECT tag FROM member_tags WHERE username = %s", [username])
         tags = DatabaseManager.fetch()
+        DatabaseManager.execute("SELECT photo FROM profile_photos WHERE username = %s", [username])
+        profilePhoto = DatabaseManager.fetch()
+        if len(profilePhoto)== 0:
+            profilePhoto = None
+        else:
+            profilePhoto = profilePhoto[0][0].tobytes()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
         member = Member(username=memberData[0],password=memberData[1],firstname=memberData[2],
-                        lastname=memberData[3],tags=tags)
+                        lastname=memberData[3],tags=tags,profilePhoto=profilePhoto)
         member.projects = Storage.getProjects(member)
         return member
 
@@ -128,16 +134,16 @@ class Storage():
         DatabaseManager.execute("DELETE FROM projects WHERE username = %s and proj_name = %s", [username, project.name])
 
     @staticmethod
-    def addComment(project,comment):
-        DatabaseManager.execute("INSERT INTO project_comments(username,proj_name,comment,id) VALUES(%s,%s,%s,%s)",
-                                [project.owner.username, project.name, comment.text,comment.id])
+    def addComment(project,comment,commenter):
+        DatabaseManager.execute("INSERT INTO project_comments(username,proj_name,comment,id,commenter) VALUES(%s,%s,%s,%s,%s)",
+                                [project.owner.username, project.name, comment.text,comment.id,commenter.username])
 
     @staticmethod
     def removeComment(project,comment):
         id = comment.id
         DatabaseManager.execute("DELETE FROM project_comments WHERE username = %s and proj_name = %s and id = %s",
                                  [project.owner.username,project.name,comment.id])
-        for i in range(len(project.comments)-id):
+        for i in range(len(project.comments)+1-id):
             DatabaseManager.execute("UPDATE project_comments SET id = %s" +
                                     "WHERE username = %s AND proj_name = %s AND id = %s",
                                     [id + i , project.owner.username, project.name, id + i + 1])
@@ -147,6 +153,21 @@ class Storage():
         binary = DatabaseManager.insertEscapeToBinary(photo)
         DatabaseManager.execute("INSERT INTO project_photos(username,proj_name,photo,id) VALUES(%s,%s,%s,%s)",
                                 [project.owner.username, project.name, binary, id])
+
+    @staticmethod
+    def removeProjectPhoto(project,index):
+        DatabaseManager.execute("DELETE FROM project_photos WHERE username = %s and proj_name = %s and id = %s",
+                                [project.owner.username,project.name,index])
+        for i in range(len(project.photos)+1-index):
+            DatabaseManager.execute("UPDATE project_photos SET id = %s" +
+                                    "WHERE username = %s AND proj_name = %s AND id = %s",
+                                    [index + i, project.owner.username, project.name, index + i + 1])
+
+    @staticmethod
+    def changeProfilePhoto(username,photo):
+        binary = DatabaseManager.insertEscapeToBinary(photo)
+        DatabaseManager.execute("DELETE FROM profile_photos WHERE username = '%s'" %username)
+        DatabaseManager.execute("INSERT INTO profile_photos(username,photo) VALUES(%s,%s)", [username,binary])
 
 #================Methods for SearchBox=====================
 

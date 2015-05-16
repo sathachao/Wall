@@ -111,10 +111,12 @@ class ProjectCommentTab(QWidget, WallObserver):
         self.commentArea = dialog.findChild(QScrollArea,"commentArea")
         self.sendBt = dialog.findChild(QPushButton,"sendBt")
         self.commentText = dialog.findChild(QTextEdit,"commentText")
-        self.commentArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.commentArea.setContentsMargins(0,0,0,0)
-        self.commentLayout = QGridLayout(self.commentArea)
+        widget = QWidget()
+        self.commentLayout = QGridLayout(widget)
+        self.commentArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.commentLayout.setContentsMargins(0,0,0,0)
+        self.commentArea.setWidget(widget)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
 
@@ -134,7 +136,7 @@ class ProjectCommentTab(QWidget, WallObserver):
                 self.commentLayout.removeWidget(widget)
                 widget.setParent(None)
             for i in range (len(history[-1].comments)):
-                self.commentLayout.addWidget(CommentWidget(history[-1].comments[i],self.system),i,0)
+                self.commentLayout.addWidget(CommentWidget(history[-1].comments[i],self.system))
         else:
             self.hide()
 

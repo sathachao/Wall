@@ -39,7 +39,7 @@ class RegistrationPage(QWidget):
         data = [self.firstnameTxt.text(), self.lastnameTxt.text(), self.usernameTxt.text(),
                 self.passwordTxt.text(), self.confirmTxt.text()]
 
-        if Storage.checkSignup(self.usernameTxt.text()):
+        if Storage.usernameExist(self.usernameTxt.text()):
             valid = False
             errText = "This username already exists"
 
