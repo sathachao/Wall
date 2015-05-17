@@ -7,7 +7,7 @@ from ClickableLabel import *
 import UI.errorDialogRsc_rc
 import sys
 
-class ErrorDialog(QWidget):
+class PopupDialog(QWidget):
     def __init__(self, errorText, parent=None):
         QWidget.__init__(self, parent=parent)
 

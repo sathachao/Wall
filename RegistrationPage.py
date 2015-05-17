@@ -6,7 +6,7 @@ from PySide.QtUiTools import *
 from ClickableLabel import *
 import UI.registerPageRsc_rc
 from Storage import *
-from ErrorDialog import *
+from PopupDialog import *
 
 
 class RegistrationPage(QWidget):
@@ -56,11 +56,9 @@ class RegistrationPage(QWidget):
             errText = "Password does not match\nwith confirmation password"
 
         if valid == True:
-            DatabaseManager.execute("SELECT count(*) FROM members")
-            DatabaseManager.execute("INSERT INTO members(username,password,firstname,lastname) VALUES(%s, %s, %s, %s);",
-                                    [data[2],data[3],data[0],data[1]])
+            Storage.addMember(data[2],data[3],data[0],data[1])
             errText = "Registration successful"
 
-        err = ErrorDialog(errText, self)
+        err = PopupDialog(errText, self)
         if valid == True:
             self.ui.close()

@@ -208,6 +208,7 @@ class ProjectSourcecodeTab(QWidget,WallObserver):
         if type(history[-1]) == Project:
             if history[-1].owner.username != user.username:
                 self.addBt.hide()
+                self.delBtt.hide()
 
     def addFile(self):
         dialog = QFileDialog(self)
