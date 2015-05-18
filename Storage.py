@@ -71,7 +71,6 @@ class Storage():
         projects = []
         for proj_name in proj_names:
             p = Storage.getProject(proj_name, member)
-            p.comments = Storage.getComments(p)
             projects.append(p)
         return projects
 
@@ -97,11 +96,11 @@ class Storage():
 
     @staticmethod
     def getComments(project):
-        Storage.cur.execute("SELECT comment,id FROM project_comments WHERE proj_name = %s and username = %s",
+        Storage.cur.execute("SELECT comment,id,commenter FROM project_comments WHERE proj_name = %s and username = %s",
                                 [project.name, project.owner.username])
         comments = Storage.cur.fetchall()
         for i in range(len(comments)):
-            comments[i] = Comment(project.owner, project,comments[i][0],int(comments[i][1]))
+            comments[i] = Comment(Storage.getUser(comments[i][2]), project,comments[i][0],int(comments[i][1]))
         return comments
 
     @staticmethod
@@ -168,6 +167,15 @@ class Storage():
         binary = psycopg2.Binary(photo)
         Storage.cur.execute("DELETE FROM profile_photos WHERE username = '%s'" %username)
         Storage.cur.execute("INSERT INTO profile_photos(username,photo) VALUES(%s,%s)", [username,binary])
+
+    @staticmethod
+    def removeProjectPhoto(project,index):
+        Storage.cur.execute("DELETE FROM project_photos WHERE username = %s and proj_name = %s and id = %s",
+                                [project.owner.username,project.name,index])
+        for i in range(len(project.photos)+1-index):
+            Storage.cur.execute("UPDATE project_photos SET id = %s" +
+                                    "WHERE username = %s AND proj_name = %s AND id = %s",
+                                    [index + i, project.owner.username, project.name, index + i + 1])
 #================Methods for SearchBox=====================
 
     @staticmethod
