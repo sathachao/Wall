@@ -19,6 +19,7 @@ class CommentWidget(QWidget,WallObserver):
         self.removeBt = dialog.findChild(QPushButton,"removeBt")
         self.nameLabel.setText(self.comment.commenter.firstname+" "+self.comment.commenter.lastname)
         self.commentText.setPlainText(self.comment.text)
+        self.commentText.setReadOnly(True)
         layout = QVBoxLayout(self)
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
