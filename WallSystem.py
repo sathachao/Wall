@@ -41,7 +41,7 @@ class WallSystem:
     def addComment(self,text):
         comment = Comment(self.user,self.history[-1],text,len(self.history[-1].comments))
         self.history[-1].addComment(comment)
-        Storage.addComment(self.history[-1],comment)
+        Storage.addComment(self.history[-1],comment, self.user)
 
     def removeComment(self, project,comment):
         project.removeComment(comment)

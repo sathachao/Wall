@@ -143,9 +143,9 @@ class Storage():
         Storage.cur.execute("DELETE FROM projects WHERE username = %s and proj_name = %s", [username, project.name])
 
     @staticmethod
-    def addComment(project,comment):
-        Storage.cur.execute("INSERT INTO project_comments(username,proj_name,comment,id) VALUES(%s,%s,%s,%s)",
-                                [project.owner.username, project.name, comment.text,comment.id])
+    def addComment(project, comment, commenter):
+        Storage.cur.execute("INSERT INTO project_comments(username,proj_name,comment,id) VALUES(%s,%s,%s,%s,%s)",
+                                [project.owner.username, project.name, comment.text,comment.id, commenter.username])
 
     @staticmethod
     def removeComment(project,comment):
