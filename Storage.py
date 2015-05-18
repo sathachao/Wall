@@ -51,10 +51,16 @@ class Storage():
         memberData = Storage.cur.fetchall()[0]
         Storage.cur.execute("SELECT tag FROM member_tags WHERE username = %s", [username])
         tags = Storage.cur.fetchall()
+        Storage.cur.execute("SELECT photo FROM profile_photos WHERE username = %s", [username])
+        profilePhoto = Storage.cur.fetchall()
+        if len(profilePhoto)== 0:
+            profilePhoto = None
+        else:
+            profilePhoto = profilePhoto[0][0].tobytes()
         for i in range(len(tags)):
             tags[i] = tags[i][0]
         member = Member(username=memberData[0],password=memberData[1],firstname=memberData[2],
-                        lastname=memberData[3],tags=tags)
+                        lastname=memberData[3],tags=tags,profilePhoto= profilePhoto)
         member.projects = Storage.getProjects(member)
         return member
 
@@ -153,10 +159,15 @@ class Storage():
 
     @staticmethod
     def addProjectPhoto(project,photo,id):
-        binary = DatabaseManager.insertEscapeToBinary(photo)
+        binary = psycopg2.Binary(photo)
         Storage.cur.execute("INSERT INTO project_photos(username,proj_name,photo,id) VALUES(%s,%s,%s,%s)",
                                 [project.owner.username, project.name, binary, id])
 
+    @staticmethod
+    def changeProfilePhoto(username,photo):
+        binary = psycopg2.Binary(photo)
+        Storage.cur.execute("DELETE FROM profile_photos WHERE username = '%s'" %username)
+        Storage.cur.execute("INSERT INTO profile_photos(username,photo) VALUES(%s,%s)", [username,binary])
 #================Methods for SearchBox=====================
 
     @staticmethod
