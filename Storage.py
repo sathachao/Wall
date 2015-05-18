@@ -3,14 +3,13 @@ import psycopg2
 from Comment import *
 from Member import *
 from Project import *
-from DatabaseManager import *
 from SourceFile import *
 
 class Storage():
     try:
-        username = "wall_client"
-        password = ""
-        db = psycopg2.connect(database="Wall", user=username, password=password)
+        username = "postgres"
+        password = "pP3819269"
+        db = psycopg2.connect(database="Wall", user=username, password=password, host="161.246.94.78", port="5432")
         db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
         cur = db.cursor()
         print("Connect successfully")

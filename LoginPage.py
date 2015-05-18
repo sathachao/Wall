@@ -4,7 +4,6 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 from PySide.QtUiTools import *
 from ClickableLabel import *
-from DatabaseManager import *
 from Member import *
 from RegistrationPage import *
 from WallSystem import *
