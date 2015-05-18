@@ -24,8 +24,12 @@ class WallPageHeader(QWidget,WallObserver):
         self.hide()
 
     def changeProfilePhoto(self):
-        fname, _ = QFileDialog.getOpenFileName(self, 'Open file','./UI')
-        self.system.changeProfilePhoto(fname)
+        dialog = QFileDialog(self)
+        dialog.setFileMode(QFileDialog.ExistingFile)
+        dialog.setNameFilter("PNG Image (*.png)")
+        if dialog.exec_():
+            filename = dialog.selectedFiles()
+            self.system.changeProfilePhoto(filename[0])
 
     def updateObserver(self,user,history):
         if type(history[-1]) == Member:
@@ -40,7 +44,7 @@ class WallPageHeader(QWidget,WallObserver):
                 factor = 159/image.height()
             else:
                 factor = 0
-            image =  image.scaled(image.width()*factor,image.height()*factor)
+            image = image.scaled(image.width()*factor, image.height()*factor)
             self.profilePhoto.setPixmap(QPixmap.fromImage(image))
             self.show()
         else:

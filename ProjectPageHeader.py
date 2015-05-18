@@ -5,9 +5,9 @@ from WallObserver import *
 from Project import *
 
 
-class ProjectPageHeader(QWidget,WallObserver):
+class ProjectPageHeader(QWidget, WallObserver):
     def __init__(self,system):
-        QWidget.__init__(self,None)
+        QWidget.__init__(self, None)
         self.system = system
         self.system.addObserver(self)
         loader = QUiLoader()

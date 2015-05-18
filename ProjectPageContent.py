@@ -157,16 +157,19 @@ class ProjectPhotoTab(QWidget,WallObserver):
         self.photoLayout = QGridLayout(widget)
         self.photoLayout.setContentsMargins(0,0,0,0)
         self.photoArea.setWidget(widget)
-        self.connect(self.addBt,SIGNAL("clicked()"),self.browsePhoto)
+        self.connect(self.addBt,SIGNAL("clicked()"), self.browsePhoto)
 
         layout.addWidget(dialog)
         layout.setContentsMargins(0,0,0,0)
         self.hide()
 
     def browsePhoto(self):
-        fname, _ = QFileDialog.getOpenFileName(self, 'Open file','./UI')
-        self.system.addProjectPhoto(fname)
-
+        dialog = QFileDialog(self)
+        dialog.setFileMode(QFileDialog.ExistingFile)
+        dialog.setNameFilter("PNG Image (*.png)")
+        if dialog.exec_():
+            filename = dialog.selectedFiles()
+            self.system.addProjectPhoto(filename[0])
     def updateObserver(self,user,history):
         if type(history[-1]) == Project:
             if history[-1].owner.username != user.username:
@@ -178,12 +181,12 @@ class ProjectPhotoTab(QWidget,WallObserver):
                 self.photoLayout.removeWidget(widget)
                 widget.setParent(None)
             for i in range(len(history[-1].photos)):
-                widget = PhotoWidget(self.system,history[-1].photos[i])
+                widget = PhotoWidget(self.system, history[-1].photos[i])
                 self.photoLayout.addWidget(widget, i//3, i%3)
 
 class ProjectSourcecodeTab(QWidget,WallObserver):
     def __init__(self,system):
-        QWidget.__init__(self,None)
+        QWidget.__init__(self, None)
         self.system = system
         self.system.addObserver(self)
         loader = QUiLoader()

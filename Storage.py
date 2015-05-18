@@ -4,6 +4,8 @@ from Comment import *
 from Member import *
 from Project import *
 from SourceFile import *
+import _thread
+
 
 class Storage():
     try:
@@ -20,6 +22,13 @@ class Storage():
 
     @staticmethod
     def usernameExist(username):
+        Storage.cur.execute("SELECT username FROM members WHERE username = %s", [username])
+        if len(Storage.cur.fetchall()) == 0:
+            return False
+        return True
+
+    @staticmethod
+    def __usernameExist(username):
         Storage.cur.execute("SELECT username FROM members WHERE username = %s", [username])
         if len(Storage.cur.fetchall()) == 0:
             return False
