@@ -8,7 +8,7 @@ from DatabaseManager import *
 from Member import *
 from RegistrationPage import *
 from WallSystem import *
-import ErrorDialog
+import PopupDialog
 import UI.loginPageRsc_rc
 from Storage import *
 
@@ -40,7 +40,7 @@ class LoginPage(QWidget):
             self.system = WallSystem(user)
             self.hide()
         else:
-            err = ErrorDialog.ErrorDialog("Wrong Password", self)
+            err = PopupDialog.PopupDialog("Wrong Password", self)
 
     def register(self):
         reg = RegistrationPage(self)
