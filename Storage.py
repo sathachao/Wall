@@ -144,7 +144,7 @@ class Storage():
 
     @staticmethod
     def addComment(project, comment, commenter):
-        Storage.cur.execute("INSERT INTO project_comments(username,proj_name,comment,id) VALUES(%s,%s,%s,%s,%s)",
+        Storage.cur.execute("INSERT INTO project_comments(username,proj_name,comment,id,commenter) VALUES(%s,%s,%s,%s,%s)",
                                 [project.owner.username, project.name, comment.text,comment.id, commenter.username])
 
     @staticmethod
