@@ -3,7 +3,7 @@ from PySide.QtUiTools import *
 from PySide.QtGui import *
 from WallObserver import *
 from PySide.QtCore import *
-from ProjectCreateWidget import *
+from ProjectCreateDialog import *
 from Project import *
 from TagEditWidget import *
 from Member import *

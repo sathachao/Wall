@@ -8,8 +8,8 @@ from SourceFile import *
 
 class Storage():
     try:
-        username = "postgres"
-        password = "pP3819269"
+        username = "wall_client"
+        password = ""
         db = psycopg2.connect(database="Wall", user=username, password=password)
         db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
         cur = db.cursor()

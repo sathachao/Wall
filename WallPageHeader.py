@@ -31,6 +31,10 @@ class WallPageHeader(QWidget,WallObserver):
         if type(history[-1]) == Member:
             self.nameText.setText(history[-1].firstname+" "+history[-1].lastname)
             self.system.fitText(self.nameText,430,40)
+            if history[-1].username==self.system.user.username:
+                self.changePhotoBt.show()
+            else:
+                self.changePhotoBt.hide()
             image = QImage.fromData(history[-1].profilePhoto)
             if image.height()!=0:
                 factor = 159/image.height()
