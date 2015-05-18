@@ -92,9 +92,11 @@ class ProjectDescriptionTab(QWidget, WallObserver):
             if history[-1].owner.username != user.username:
                 self.descriptionEditBt.hide()
                 self.tagEditBt.hide()
+                self.saveBt.hide()
             else:
                 self.descriptionEditBt.show()
                 self.tagEditBt.show()
+                self.saveBt.show()
             for tag in history[-1].tags:
                 if len(self.model.findItems(tag))==0:
                     self.model.appendRow((QStandardItem(tag)))

@@ -100,7 +100,7 @@ class Storage():
                                 [project.name, project.owner.username])
         comments = Storage.cur.fetchall()
         for i in range(len(comments)):
-            comments[i] = Comment(Storage.getUser(comments[i][2]), project,comments[i][0],int(comments[i][1]))
+            comments[i] = Comment(Storage.getUser(comments[i][2]),comments[i][0],int(comments[i][1]))
         return comments
 
     @staticmethod

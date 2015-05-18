@@ -57,6 +57,8 @@ class Page():
         self.tabFrame.setLayout(self.tabLayout)
         self.contentFrame.setLayout(self.contentLayout)
         self.searchBarFrame.setLayout(self.searchBarLayout)
+
+        self.dialog.setWindowFlags(Qt.CustomizeWindowHint)
         self.dialog.show()
 
 

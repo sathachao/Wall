@@ -2,12 +2,15 @@ __author__ = 'Faaiz'
 from PySide.QtUiTools import *
 from PySide.QtGui import *
 from ClickableLabel import *
+from WallObserver import*
+from Member import *
 
 
-class ProjectThumbnail(QWidget):
+class ProjectThumbnail(QWidget,WallObserver):
     def __init__(self,project,system):
         QWidget.__init__(self,None)
         self.system = system
+        self.system.addObserver(self)
         self.project = project
         loader = QUiLoader()
         dialog = loader.load("./UI/projectThumbnail.ui")
@@ -27,3 +30,10 @@ class ProjectThumbnail(QWidget):
 
     def openProject(self):
         self.system.openProject(self.project)
+
+    def updateObserver(self,user,history):
+        if type(history[-1])==Member:
+            if history[-1].username == user.username:
+                self.removeBt.show()
+            else:
+                self.removeBt.hide()
