@@ -10,8 +10,9 @@ from ProjectPageContent import *
 import UI.wallPageHeaderRsc_rc
 from SearchBar import *
 
-class Page():
+class Page(QWidget):
     def __init__(self, sys):
+        QWidget.__init__(self,None)
         self.system = sys
         loader = QUiLoader()
         self.dialog = loader.load("./UI/page.ui", None)
@@ -58,8 +59,14 @@ class Page():
         self.contentFrame.setLayout(self.contentLayout)
         self.searchBarFrame.setLayout(self.searchBarLayout)
 
-        self.dialog.setWindowFlags(Qt.CustomizeWindowHint)
-        self.dialog.show()
+        self.setWindowFlags(Qt.CustomizeWindowHint)
+        layout = QVBoxLayout()
+        layout.addWidget(self.dialog)
+        self.setLayout(layout)
+        layout.setContentsMargins(0,0,0,0)
+        self.setMaximumSize(self.dialog.size())
+        self.setMinimumSize(self.dialog.size())
+        self.show()
 
 
 
