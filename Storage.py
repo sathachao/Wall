@@ -28,7 +28,7 @@ class Storage():
     @staticmethod
     def addMember(username,password,first,last):
         Storage.cur.execute("INSERT INTO members(username,password,firstname,lastname)"+
-                         "VALUES(%s, %s, %s, %s, %s, %s)", [username, password, first, last])
+                         "VALUES(%s, %s, %s, %s)", [username, password, first, last])
 
 #====================Methods for LoginPage
     @staticmethod
